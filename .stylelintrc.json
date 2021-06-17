@@ -1,0 +1,53 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-rational-order",
+    "stylelint-config-prettier"
+  ],
+  "plugins": [
+    "stylelint-order",
+    "stylelint-scss",
+    "stylelint-declaration-block-no-ignored-properties"
+  ],
+  "rules": {
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": [
+          "mixin",
+          "extend",
+          "content",
+          "include",
+          "if",
+          "each"
+        ]
+      }
+    ],
+    "comment-empty-line-before": null,
+    "function-name-case": [
+      "lower",
+      {
+        "ignoreFunctions": [
+          "/colorPalette/"
+        ]
+      }
+    ],
+    "indentation": 2,
+    "no-invalid-double-slash-comments": null,
+    "no-descending-specificity": null,
+    "no-invalid-position-at-import-rule": null,
+    "function-comma-newline-after": null,
+    "function-parentheses-newline-inside": null,
+    "function-max-empty-lines": null,
+    "function-whitespace-after": null,
+    "number-leading-zero": null,
+    "number-no-trailing-zeros": null,
+    "rule-empty-line-before": null,
+    "selector-combinator-space-after": null,
+    "selector-list-comma-newline-after": null,
+    "selector-pseudo-element-colon-notation": null,
+    "unit-no-unknown": null,
+    "value-list-max-empty-lines": null,
+    "font-family-no-missing-generic-family-keyword": null
+  }
+}

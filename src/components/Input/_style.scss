@@ -1,0 +1,102 @@
+.yd-input-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  margin-bottom: 30px;
+  .icon-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 100%;
+    color: $input-color;
+    svg {
+      color: $input-placeholder-color;
+    }
+  }
+}
+.icon-wrapper + .yd-input-inner {
+  padding-right: 35px;
+}
+.yd-input-inner {
+  width: 100%;
+  padding: $input-padding-y $input-padding-x;
+  color: $input-color;
+  font-weight: $input-font-weight;
+  font-size: $input-font-size;
+  font-family: $input-font-family;
+  line-height: $input-line-height;
+  background-color: $input-bg;
+  background-clip: padding-box;
+  border: $input-border-width solid $input-border-color;
+
+  // Note: This has no effect on <select>s in some browsers, due to the limited stylability of `<select>`s in CSS.
+  border-radius: $input-border-radius;
+  box-shadow: $input-box-shadow;
+  transition: $input-transition;
+
+  &:focus {
+    color: $input-focus-color;
+    background-color: $input-focus-bg;
+    border-color: $input-focus-border-color;
+    outline: 0;
+    box-shadow: $input-focus-box-shadow;
+    // Avoid using mixin so we can pass custom focus shadow properly
+  }
+  &::placeholder {
+    color: $input-placeholder-color;
+    // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
+    opacity: 1;
+  }
+  &:disabled,
+  &[readonly] {
+    background-color: $input-disabled-bg;
+    border-color: $input-disabled-border-color;
+    // iOS fix for unreadable disabled content; see https://github.com/twbs/bootstrap/issues/11655.
+    opacity: 1;
+  }
+}
+.yd-input-group-prepend,
+.yd-input-group-append {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0; // Allow use of <label> elements by overriding our default margin-bottom
+  padding: $input-padding-y $input-padding-x;
+  color: $input-group-addon-color;
+  font-weight: $font-weight-normal;
+  font-size: $input-font-size; // Match inputs
+  line-height: $input-line-height;
+  white-space: nowrap;
+  text-align: center;
+  background-color: $input-group-addon-bg;
+  border: $input-border-width solid $input-group-addon-border-color;
+  border-radius: $input-border-radius;
+}
+.yd-input-group-append + .btn {
+  padding: 0;
+  border: 0;
+}
+.input-group > .yd-input-group-prepend,
+.input-group.input-group-append > .yd-input-inner {
+  @include border-right-radius(0);
+}
+
+.input-group > .yd-input-group-append,
+.input-group.input-group-prepend > .yd-input-inner {
+  @include border-left-radius(0);
+}
+
+.input-size-sm .yd-input-inner {
+  padding: $input-padding-y-sm $input-padding-x-sm;
+  font-size: $input-font-size-sm;
+  border-radius: $input-border-radius-sm;
+}
+
+.input-size-lg .yd-input-inner {
+  padding: $input-padding-y-lg $input-padding-x-lg;
+  font-size: $input-font-size-lg;
+  border-radius: $input-border-radius-lg;
+}
