@@ -1,8 +1,8 @@
 ## yidian-ui component library
 
-## 使用 React+typescript 从零到一打造一套你自己的组件库
+## 使用 React+typescript 打造的一套风格组件库
 
-yidian-ui 是为一点资讯打造的一套特色组件库，使用 React Hooks 和 typescript，文档地址是
+yidian-ui 是一套特色组件库，使用 React Hooks 和 typescript，文档地址是
 
 ### 安装最后已经发布的组件库来试试
 
