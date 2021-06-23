@@ -10,7 +10,7 @@ export interface MenuProps {
   /** 菜单类型 横向或者纵向 */
   mode?: MenuMode;
   style?: CSSProperties;
-  /** 点击菜单项触发的回掉函数 */
+  /** 点击菜单项触发的回调函数 */
   onSelect?: (selectedIndex: string) => void;
   /** 设置子菜单的默认打开 只在纵向模式下生效 */
   defaultOpenSubMenus?: string[];

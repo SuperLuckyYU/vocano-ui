@@ -46,7 +46,9 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ext js,ts,tsx src --max-warnings 5",
     "lint:style": "stylelint \"{src, components}/**/*.scss\" --syntax scss",
-    "prepublishOnly": "npm run test:nowatch && npm run lint && npm run lint:style && npm run build"
+    "prepublishOnly": "npm run test:nowatch && npm run lint && npm run lint:style && npm run build",
+    "storybook": "start-storybook -p 6006 --no-manager-cache",
+    "build-storybook": "build-storybook"
   },
   "husky": {
     "hooks": {
@@ -90,6 +92,11 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/react": "^6.2.9",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -98,6 +105,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-transition-group": "^4.4.1",
+    "babel-loader": "^8.2.2",
     "cross-env": "^7.0.3",
     "css-loader": "^4.3.0",
     "eslint-config-airbnb": "^18.2.1",

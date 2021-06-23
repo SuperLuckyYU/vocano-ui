@@ -4,7 +4,7 @@ import classNames from 'classnames'
 export type ButtonSize = 'lg' | 'sm'
 export type ButtonType = 'primary' | 'default' | 'danger' | 'link'
 
-interface BaseButtonProps {
+export interface BaseButtonProps {
   className?: string;
   /** 设置 Button 的禁用 */
   disabled?: boolean;
@@ -68,6 +68,7 @@ const Button: FC<ButtonProps> = (props) => {
 Button.defaultProps = {
   disabled: false,
   btnType: 'default',
+  size: 'lg',
 }
 
 export default Button;

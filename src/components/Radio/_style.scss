@@ -1,0 +1,48 @@
+.yd-radio-wrap {
+  display: flex;
+  align-items: center;
+  height: $radio-wrap-height;
+  margin-bottom: 8px;
+
+  .left {
+    display: inline-block;
+
+    .circle {
+      position: relative;
+      display: inline-block;
+      box-sizing: border-box;
+      width: $radio-circle-width;
+      height: $radio-circle-height;
+      overflow: hidden;
+      background-color: $radio-circle-bg;
+      border: $radio-circle-border;
+      border-radius: $radio-circle-border-radius;
+    }
+    .active {
+      background-color: $radio-active-bg;
+      border: none;
+      .fork {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        width: 5px;
+        height: 12px;
+        border-right: 1.5px solid #fff;
+        border-bottom: 1.5px solid #fff;
+        transform: translate(-10%, -45%) rotate(40deg);
+      }
+    }
+
+    .label {
+      display: inline-block;
+      height: 20px;
+      margin-left: 5px;
+      font-size: $radio-label-font-size;
+      line-height: 20px;
+      vertical-align: middle;
+    }
+  }
+}
+.yd-radio-wrap:last-of-type {
+  margin-bottom: 0;
+}
