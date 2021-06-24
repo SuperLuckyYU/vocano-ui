@@ -1,6 +1,10 @@
+
 ## vocano-ui component library
 
 ## 使用 React+typescript 打造的一套风格组件库
+
+
+[![Build Status](https://travis-ci.com/SuperLuckyYU/vocano-ui.svg?branch=master)](https://travis-ci.com/SuperLuckyYU/vocano-ui)
 
 vocano-ui 是一套特色组件库，使用 React Hooks 和 typescript，文档地址是 https://superluckyyu.github.io/vocano-ui
 
