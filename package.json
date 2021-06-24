@@ -1,5 +1,5 @@
 {
-  "name": "yidian-ui",
+  "name": "vocano-ui",
   "version": "0.1.0",
   "private": false,
   "description": "React components library",
@@ -14,10 +14,10 @@
     "React",
     "Typescript"
   ],
-  "homepage": "https://github.com/SuperLuckyYU/yidian-ui.git",
+  "homepage": "https://github.com/SuperLuckyYU/vocano-ui.git",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SuperLuckyYU/yidian-ui.git"
+    "url": "https://github.com/SuperLuckyYU/vocano-ui.git"
   },
   "files": [
     "dist"

@@ -23,7 +23,7 @@ export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
  * ### 引用方法
  *
  * ~~~js
- * import { Button } from 'yidian-ui'
+ * import { Button } from 'vocano-ui'
  * ~~~
  */
 const Button: FC<ButtonProps> = (props) => {

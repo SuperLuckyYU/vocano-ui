@@ -15,7 +15,7 @@ export interface RadioProps {
 /**
  * 为网站提供的单选按钮。
  * ~~~js
- * import { Radio } from 'yidian-ui'
+ * import { Radio } from 'vocano-ui'
  * ~~~
  */
 const Radio: FC<RadioProps> = (props) => {
@@ -26,7 +26,7 @@ const Radio: FC<RadioProps> = (props) => {
   })
 
   return (
-    <div className='yd-radio-wrap' style={style}>
+    <div className='vo-radio-wrap' style={style}>
       <div className='left'>
         <div className={classes}>
           <div className='fork' />

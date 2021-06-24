@@ -43,10 +43,10 @@ const generateMenu = (props: MenuProps) => (
   )
 const createStyleFile = () => {
   const cssFile: string = `
-    .yd-submenu {
+    .vo-submenu {
       display: none;
     }
-    .yd-submenu.menu-opened {
+    .vo-submenu.menu-opened {
       display:block;
     }
   `
@@ -66,7 +66,7 @@ describe('test Menu and MenuItem component in default(horizontal) mode', () => {
   })
   it('should render correct Menu and MenuItem based on default props', () => {
     expect(menuElement).toBeInTheDocument()
-    expect(menuElement).toHaveClass('yd-menu test')
+    expect(menuElement).toHaveClass('vo-menu test')
     expect(menuElement.querySelectorAll(':scope > li').length).toEqual(5)
     expect(activeElement).toHaveClass('menu-item is-active')
     expect(disabledElement).toHaveClass('menu-item is-disabled')

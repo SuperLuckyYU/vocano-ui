@@ -12,7 +12,7 @@ describe('test Input component', () => {
     const wrapper = render(<Input {...defaultProps}/>)
     const testNode = wrapper.getByPlaceholderText('test-input') as HTMLInputElement
     expect(testNode).toBeInTheDocument()
-    expect(testNode).toHaveClass('yd-input-inner')
+    expect(testNode).toHaveClass('vo-input-inner')
     fireEvent.change(testNode, { target: { value: '23' } })
     expect(defaultProps.onChange).toHaveBeenCalled()
     expect(testNode.value).toEqual('23')
@@ -24,12 +24,12 @@ describe('test Input component', () => {
   })
   it('should render different input sizes on size property', () => {
     const wrapper = render(<Input placeholder="sizes" size="lg" />)
-    const testContainer = wrapper.container.querySelector('.yd-input-wrapper')
+    const testContainer = wrapper.container.querySelector('.vo-input-wrapper')
     expect(testContainer).toHaveClass('input-size-lg')
   })
   it('should render prepand and append element on prepand/append property', () => {
     const {queryByText, container } = render(<Input placeholder="pend" prepend="https://" append=".com"/>)
-    const testContainer = container.querySelector('.yd-input-wrapper')
+    const testContainer = container.querySelector('.vo-input-wrapper')
     expect(testContainer).toHaveClass('input-group input-group-append input-group-prepend')
     expect(queryByText('https://')).toBeInTheDocument()
     expect(queryByText('.com')).toBeInTheDocument()

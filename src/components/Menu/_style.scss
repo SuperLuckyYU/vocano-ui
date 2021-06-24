@@ -1,4 +1,4 @@
-.yd-menu {
+.vo-menu {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 30px;
@@ -51,7 +51,7 @@
       transform: rotate(180deg) !important;
     }
   }
-  .yd-submenu {
+  .vo-submenu {
     padding-left: 0;
     white-space: nowrap;
     //display: none;
@@ -68,7 +68,7 @@
       }
     }
   }
-  .yd-submenu.menu-opened {
+  .vo-submenu.menu-opened {
     //display: block;
   }
 }
@@ -76,7 +76,7 @@
   > .menu-item {
     border-bottom: $menu-item-active-border-width solid transparent;
   }
-  .yd-submenu {
+  .vo-submenu {
     position: absolute;
     top: calc(100% + 8px);
     left: 0;

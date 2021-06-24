@@ -23,7 +23,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLElement>, 'size
  *
  * ~~~js
  * // 这样引用
- * import { Input } from 'yidian-ui'
+ * import { Input } from 'vocano-ui'
  * ~~~
  * 支持 HTMLInput 的所有基本属性
  */
@@ -37,7 +37,7 @@ const Input: FC<InputProps> = (props) => {
     style,
     ...restProps
   } = props
-  const cnames = classNames('yd-input-wrapper', {
+  const cnames = classNames('vo-input-wrapper', {
     [`input-size-${size}`]: size,
     'is-disabled': disabled,
     'input-group': prepend || append,
@@ -56,14 +56,14 @@ const Input: FC<InputProps> = (props) => {
   }
   return (
     <div className={cnames} style={style}>
-      {prepend && <div className="yd-input-group-prepend">{prepend}</div>}
+      {prepend && <div className="vo-input-group-prepend">{prepend}</div>}
       {icon && <div className="icon-wrapper"><Icon icon={icon} title={`title-${icon}`}/></div>}
       <input
-        className="yd-input-inner"
+        className="vo-input-inner"
         disabled={disabled}
         {...restProps}
       />
-      {append && <div className="yd-input-group-append">{append}</div>}
+      {append && <div className="vo-input-group-append">{append}</div>}
     </div>
   )
 }

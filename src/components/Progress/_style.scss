@@ -1,13 +1,13 @@
-.yd-progress-bar {
+.vo-progress-bar {
   box-sizing: border-box;
   width: 100%;
-  .yd-progress-bar-outer {
+  .vo-progress-bar-outer {
     position: relative;
     overflow: hidden;
     background-color: $progress-bg;
     border-radius: $progress-border-radius;
   }
-  .yd-progress-bar-inner {
+  .vo-progress-bar-inner {
     position: absolute;
     top: 0;
     left: 0;

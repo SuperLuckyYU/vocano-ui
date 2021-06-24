@@ -1,22 +1,22 @@
-## yidian-ui component library
+## vocano-ui component library
 
 ## 使用 React+typescript 打造的一套风格组件库
 
-yidian-ui 是一套特色组件库，使用 React Hooks 和 typescript，文档地址是 https://superluckyyu.github.io/yidian-ui
+vocano-ui 是一套特色组件库，使用 React Hooks 和 typescript，文档地址是 https://superluckyyu.github.io/vocano-ui
 
 ### 安装最后已经发布的组件库来试试
 
 ```javascript
-npm install yidian-ui --save
+npm install vocano-ui --save
 ```
 
 ### 使用
 
 ```javascript
 // 加载样式
-import 'yidian-ui/dist/index.css';
+import 'vocano-ui/dist/index.css';
 // 引入组件
-import { Button } from 'yidian-ui';
+import { Button } from 'vocano-ui';
 ```
 
 ### 亮点
@@ -41,5 +41,5 @@ npm test
 npm run build
 
 //发布到 npm
-npm run publish
+npm publish
 ```

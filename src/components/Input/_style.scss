@@ -1,4 +1,4 @@
-.yd-input-wrapper {
+.vo-input-wrapper {
   position: relative;
   display: flex;
   width: 100%;
@@ -18,10 +18,10 @@
     }
   }
 }
-.icon-wrapper + .yd-input-inner {
+.icon-wrapper + .vo-input-inner {
   padding-right: 35px;
 }
-.yd-input-inner {
+.vo-input-inner {
   width: 100%;
   padding: $input-padding-y $input-padding-x;
   color: $input-color;
@@ -59,8 +59,8 @@
     opacity: 1;
   }
 }
-.yd-input-group-prepend,
-.yd-input-group-append {
+.vo-input-group-prepend,
+.vo-input-group-append {
   display: flex;
   align-items: center;
   margin-bottom: 0; // Allow use of <label> elements by overriding our default margin-bottom
@@ -75,27 +75,27 @@
   border: $input-border-width solid $input-group-addon-border-color;
   border-radius: $input-border-radius;
 }
-.yd-input-group-append + .btn {
+.vo-input-group-append + .btn {
   padding: 0;
   border: 0;
 }
-.input-group > .yd-input-group-prepend,
-.input-group.input-group-append > .yd-input-inner {
+.input-group > .vo-input-group-prepend,
+.input-group.input-group-append > .vo-input-inner {
   @include border-right-radius(0);
 }
 
-.input-group > .yd-input-group-append,
-.input-group.input-group-prepend > .yd-input-inner {
+.input-group > .vo-input-group-append,
+.input-group.input-group-prepend > .vo-input-inner {
   @include border-left-radius(0);
 }
 
-.input-size-sm .yd-input-inner {
+.input-size-sm .vo-input-inner {
   padding: $input-padding-y-sm $input-padding-x-sm;
   font-size: $input-font-size-sm;
   border-radius: $input-border-radius-sm;
 }
 
-.input-size-lg .yd-input-inner {
+.input-size-lg .vo-input-inner {
   padding: $input-padding-y-lg $input-padding-x-lg;
   font-size: $input-font-size-lg;
   border-radius: $input-border-radius-lg;

@@ -26,13 +26,13 @@ export const MenuContext = createContext<IMenuContext>({index: '0'})
 /**
  * 为网站提供导航功能的菜单。支持横向纵向两种模式，支持下拉菜单。
  * ~~~js
- * import { Menu } from 'yidian-ui'
+ * import { Menu } from 'vocano-ui'
  * ~~~
  */
 const Menu: FC<MenuProps> = (props) => {
   const { className, mode, style, children, defaultIndex, onSelect, defaultOpenSubMenus } = props
   const [ currentActive, setActive ] = useState(defaultIndex)
-  const classes = classNames('yd-menu', className, {
+  const classes = classNames('vo-menu', className, {
     'menu-vertical': mode === 'vertical',
     'menu-horizontal': mode !== 'vertical',
   })
