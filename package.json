@@ -37,7 +37,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "clean": "rimraf ./build",
+    "clean": "rimraf ./dist",
     "build": "npm run clean && npm run build-ts && npm run build-css",
     "build-ts": "tsc -p tsconfig.build.json",
     "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
