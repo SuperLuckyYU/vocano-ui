@@ -6,8 +6,6 @@
 
 [![Build Status](https://travis-ci.com/SuperLuckyYU/vocano-ui.svg?branch=master)](https://travis-ci.com/SuperLuckyYU/vocano-ui)
 
-vocano-ui 是一套特色组件库，使用 React Hooks 和 typescript，文档地址是 https://superluckyyu.github.io/vocano-ui
-
 ### 安装最后已经发布的组件库来试试
 
 ```javascript
