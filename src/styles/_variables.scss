@@ -42,6 +42,7 @@ $theme-colors: (
   'dark': $dark,
 );
 
+$hd: 1px; // basic unit
 $font-family-sans-serif: -apple-system, blinkmacsystemfont, 'Segoe UI', roboto, 'Helvetica Neue',
   arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
   'Noto Color Emoji' !default;
@@ -49,13 +50,14 @@ $font-family-monospace: sfmono-regular, menlo, monaco, consolas, 'Liberation Mon
   monospace !default;
 $font-family-base: $font-family-sans-serif !default;
 
-// 字体大小
-$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
-$font-size-lg: $font-size-base * 1.25 !default;
-$font-size-sm: $font-size-base * 0.875 !default;
+// Font
+$font-size-xs: 10 * $hd !default;
+$font-size-sm: 12 * $hd !default;
+$font-size-base: 14 * $hd !default;
+$font-size-lg: 16 * $hd !default;
 $font-size-root: null !default;
 
-// 字重
+// Font Weight
 $font-weight-lighter: lighter !default;
 $font-weight-light: 300 !default;
 $font-weight-normal: 400 !default;
@@ -63,20 +65,22 @@ $font-weight-bold: 700 !default;
 $font-weight-bolder: bolder !default;
 $font-weight-base: $font-weight-normal !default;
 
-// 行高
+// Line Height
 $line-height-base: 1.5 !default;
-$line-height-lg: 2 !default;
-$line-height-sm: 1.25 !default;
+$line-height-xs: 14 * $hd;
+$line-height-md: 20 * $hd !default;
+$line-height-sm: 18 * $hd !default;
+$line-height-lg: 22 * $hd !default;
 
-// 标题大小
-$h1-font-size: $font-size-base * 2.5 !default;
-$h2-font-size: $font-size-base * 2 !default;
-$h3-font-size: $font-size-base * 1.75 !default;
-$h4-font-size: $font-size-base * 1.5 !default;
-$h5-font-size: $font-size-base * 1.25 !default;
-$h6-font-size: $font-size-base !default;
+// Title
+$h1-font-size: 35 * $hd !default;
+$h2-font-size: 28 * $hd !default;
+$h3-font-size: 24.5 * $hd !default;
+$h4-font-size: 21 * $hd !default;
+$h5-font-size: 17.5 * $hd !default;
+$h6-font-size: 14 * $hd !default;
 
-// 链接
+// Link
 $link-color: $primary !default;
 $link-decoration: none !default;
 $link-hover-color: darken($link-color, 15%) !default;
@@ -88,13 +92,13 @@ $body-color: $gray-900 !default;
 $body-text-align: null !default;
 
 // Spacing
-$spacer: 1rem !default;
+$spacer: 16 * $hd !default;
 
 // Paragraphs
 
-$paragraph-margin-bottom: 1rem !default;
+$paragraph-margin-bottom: 16 * $hd !default;
 
-// 字体其他部分 heading list hr 等等
+// Font Others heading list hr ...
 $headings-margin-bottom: $spacer / 2 !default;
 $headings-font-family: null !default;
 $headings-font-style: null !default;
@@ -102,10 +106,10 @@ $headings-font-weight: 500 !default;
 $headings-line-height: 1.2 !default;
 $headings-color: null !default;
 
-$display1-size: 6rem !default;
-$display2-size: 5.5rem !default;
-$display3-size: 4.5rem !default;
-$display4-size: 3.5rem !default;
+$display1-size: 96 * $hd !default;
+$display2-size: 88 * $hd !default;
+$display3-size: 72 * $hd !default;
+$display4-size: 56 * $hd !default;
 
 $display1-weight: 300 !default;
 $display2-weight: 300 !default;
@@ -113,7 +117,7 @@ $display3-weight: 300 !default;
 $display4-weight: 300 !default;
 $display-line-height: $headings-line-height !default;
 
-$lead-font-size: $font-size-base * 1.25 !default;
+$lead-font-size: 17.5 * $hd !default;
 $lead-font-weight: 300 !default;
 
 $small-font-size: 0.875em !default;
@@ -126,14 +130,14 @@ $initialism-font-size: $small-font-size !default;
 
 $blockquote-small-color: $gray-600 !default;
 $blockquote-small-font-size: $small-font-size !default;
-$blockquote-font-size: $font-size-base * 1.25 !default;
+$blockquote-font-size: 17.5 * $hd !default;
 
 $hr-color: inherit !default;
-$hr-height: 1px !default;
+$hr-height: $hd !default;
 $hr-opacity: 0.25 !default;
 
-$legend-margin-bottom: 0.5rem !default;
-$legend-font-size: 1.5rem !default;
+$legend-margin-bottom: 8 * $hd !default;
+$legend-font-size: 24 * $hd !default;
 $legend-font-weight: null !default;
 
 $mark-padding: 0.2em !default;
@@ -142,7 +146,7 @@ $dt-font-weight: $font-weight-bold !default;
 
 $nested-kbd-font-weight: $font-weight-bold !default;
 
-$list-inline-padding: 0.5rem !default;
+$list-inline-padding: 8 * $hd !default;
 
 $mark-bg: #fcf8e3 !default;
 
@@ -154,55 +158,54 @@ $code-font-size: $small-font-size !default;
 $code-color: $pink !default;
 $pre-color: null !default;
 
-// options 可配置选项
+// options configurable options
 $enable-pointer-cursor-for-buttons: true !default;
 
-// 边框 和 border radius
+// border and border radius
 
-$border-width: 1px !default;
+$border-width: $hd !default;
 $border-color: $gray-300 !default;
 
-$border-radius: 0.25rem !default;
-$border-radius-lg: 0.3rem !default;
-$border-radius-sm: 0.2rem !default;
+$border-radius: 4 * $hd !default;
+$border-radius-lg: 8 * $hd !default;
+$border-radius-sm: 2 * $hd !default;
 
-// 不同类型的 box shadow
-$box-shadow-sm: 0 0.125rem 0.25rem rgba($black, 0.075) !default;
-$box-shadow: 0 0.5rem 1rem rgba($black, 0.15) !default;
-$box-shadow-lg: 0 1rem 3rem rgba($black, 0.175) !default;
-$box-shadow-inset: inset 0 1px 2px rgba($black, 0.075) !default;
+// box shadow
+$box-shadow-sm: 0 2px 4px rgba($black, 0.075) !default;
+$box-shadow: 0 8px 16px rgba($black, 0.15) !default;
+$box-shadow-lg: 0 16px 48px rgba($black, 0.175) !default;
+$box-shadow-inset: inset 0 $hd 2px rgba($black, 0.075) !default;
 
-// 按钮
-// 按钮基本属性
+// button
 $btn-font-weight: 400;
-$btn-padding-y: 0.375rem !default;
-$btn-padding-x: 0.75rem !default;
+$btn-padding-y: 6 * $hd !default;
+$btn-padding-x: 16 * $hd !default;
 $btn-font-family: $font-family-base !default;
 $btn-font-size: $font-size-base !default;
 $btn-line-height: $line-height-base !default;
 
-//不同大小按钮的 padding 和 font size
-$btn-padding-y-sm: 0.25rem !default;
-$btn-padding-x-sm: 0.5rem !default;
+//button padding and font size
+$btn-padding-y-sm: 4 * $hd !default;
+$btn-padding-x-sm: 12 * $hd !default;
 $btn-font-size-sm: $font-size-sm !default;
 
-$btn-padding-y-lg: 0.5rem !default;
-$btn-padding-x-lg: 1rem !default;
+$btn-padding-y-lg: 8 * $hd !default;
+$btn-padding-x-lg: 24 * $hd !default;
 $btn-font-size-lg: $font-size-lg !default;
 
-// 按钮边框
+// button border
 $btn-border-width: $border-width !default;
 
-// 按钮其他
-$btn-box-shadow: inset 0 1px 0 rgba($white, 0.15), 0 1px 1px rgba($black, 0.075) !default;
+// button others
+$btn-box-shadow: inset 0 $hd 0 rgba($white, 0.15), 0 $hd $hd rgba($black, 0.075) !default;
 $btn-disabled-opacity: 0.65 !default;
 
-// 链接按钮
+// button link
 $btn-link-color: $link-color !default;
 $btn-link-hover-color: $link-hover-color !default;
 $btn-link-disabled-color: $gray-600 !default;
 
-// 按钮 radius
+// button radius
 $btn-border-radius: $border-radius !default;
 $btn-border-radius-lg: $border-radius-lg !default;
 $btn-border-radius-sm: $border-radius-sm !default;
@@ -213,18 +216,17 @@ $btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
 // menu
 $menu-border-width: $border-width !default;
 $menu-border-color: $border-color !default;
-$menu-box-shadow: inset 0 1px 0 rgba($white, 0.15), 0 1px 1px rgba($black, 0.075) !default;
+$menu-box-shadow: inset 0 $hd 0 rgba($white, 0.15), 0 $hd $hd rgba($black, 0.075) !default;
 $menu-transition: color 0.15s ease-in-out, border-color 0.15s ease-in-out !default;
 
 // menu-item
-$menu-item-padding-y: 0.5rem !default;
-$menu-item-padding-x: 1rem !default;
+$menu-item-padding-y: 8 * $hd !default;
+$menu-item-padding-x: 16 * $hd !default;
 $menu-item-active-color: $primary !default;
-$menu-item-active-border-width: 2px !default;
+$menu-item-active-border-width: 2 * $hd !default;
 $menu-item-disabled-color: $gray-600 !default;
 
 //sub-menu
-//submenu
 $submenu-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
 
 //input
@@ -258,7 +260,7 @@ $input-border-radius-sm: $border-radius-sm !default;
 
 $input-focus-bg: $input-bg !default;
 $input-focus-border-color: lighten($primary, 25%) !default;
-$input-focus-width: 0.2rem !default;
+$input-focus-width: 3.2 * $hd !default;
 $input-focus-color: $input-color !default;
 $input-focus-shadow-color: rgba($primary, 0.25) !default;
 $input-focus-box-shadow: 0 0 0 $input-focus-width $input-focus-shadow-color !default;
@@ -283,11 +285,11 @@ $progress-bar-color: $white !default;
 $progress-bar-transition: width 0.6s ease !default;
 
 // Radio
-$radio-wrap-height: 20px !default;
-$radio-circle-width: 12px !default;
-$radio-circle-height: 12px !default;
-$radio-circle-border: 1px solid #c5c9cd !default;
+$radio-wrap-height: 20 * $hd !default;
+$radio-circle-width: 12 * $hd !default;
+$radio-circle-height: 12 * $hd !default;
+$radio-circle-border: 1 * $hd solid #c5c9cd !default;
 $radio-circle-border-radius: 50% !default;
 $radio-circle-bg: $white !default;
 $radio-active-bg: $vo-red !default;
-$radio-label-font-size: 14px !default;
+$radio-label-font-size: 14 * $hd !default;

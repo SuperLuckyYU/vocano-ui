@@ -146,21 +146,21 @@ abbr[data-original-title] {
 }
 
 address {
-  margin-bottom: 1rem;
+  margin-bottom: 16 * $hd;
   font-style: normal;
   line-height: inherit;
 }
 
 ol,
 ul {
-  padding-left: 2rem;
+  padding-left: 32 * $hd;
 }
 
 ol,
 ul,
 dl {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 16 * $hd;
 }
 
 ol ol,
@@ -177,12 +177,12 @@ dt {
 // 1. Undo browser default
 
 dd {
-  margin-bottom: 0.5rem;
+  margin-bottom: 8 * $hd;
   margin-left: 0; // 1
 }
 
 blockquote {
-  margin: 0 0 1rem;
+  margin: 0 0 16 * $hd;
 }
 
 // Add the correct font weight in Chrome, Edge, and Safari
@@ -258,7 +258,7 @@ samp {
 pre {
   display: block;
   margin-top: 0; // 1
-  margin-bottom: 1rem; // 2
+  margin-bottom: 16 * $hd; // 2
   overflow: auto; // 3
   color: $pre-color;
   font-size: $code-font-size;
@@ -287,7 +287,7 @@ code {
 // Apply a consistent margin strategy (matches our type styles).
 
 figure {
-  margin: 0 0 1rem;
+  margin: 0 0 16 * $hd;
 }
 
 // Images and content
@@ -313,8 +313,8 @@ table {
 }
 
 caption {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 8 * $hd;
+  padding-bottom: 8 * $hd;
   color: $text-muted;
   text-align: left;
   caption-side: bottom;
@@ -333,7 +333,7 @@ th {
 
 label {
   display: inline-block; // 1
-  margin-bottom: 0.5rem;
+  margin-bottom: 8 * $hd;
 }
 
 // Remove the default `border-radius` that macOS Chrome adds.

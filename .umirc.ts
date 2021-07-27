@@ -1,4 +1,4 @@
-import { defineConfig } from 'dumi';
+import { defineConfig, IConfig } from 'dumi';
 
 export default defineConfig({
   base: '/vocano-ui',
@@ -13,5 +13,12 @@ export default defineConfig({
     sassOptions: {},
   },
   exportStatic: {},
-  // more config: https://d.umijs.org/config
-});
+  locales: [['zh-CN', '中文'], ['en-US', 'English']],
+  navs: [
+    null,
+    {
+      title: 'GitHub',
+      path: 'https://github.com/SuperLuckyYU/vocano-ui.git',
+    },
+  ],
+} as IConfig);
