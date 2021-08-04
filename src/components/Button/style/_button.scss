@@ -27,11 +27,11 @@ $buttonPrefixCls: 'vo-button';
 }
 
 .#{$buttonPrefixCls}-lg {
-  width: 100%;
   display: block;
+  width: 100%;
   font-size: $btn-font-size-lg;
-  border-radius: $btn-border-radius-lg;
   padding: $btn-padding-y-lg 0;
+  border-radius: $btn-border-radius-lg;
 }
 .#{$buttonPrefixCls}-sm {
   @include button-size(
