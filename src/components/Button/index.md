@@ -17,48 +17,13 @@ import { Button } from 'vocano-ui';
 
 代码演示:
 
-```tsx
-import React from 'react';
-import { Button } from 'vocano-ui';
+<code src="../../../example/Button/index.tsx" hideActions='["CSB"]'></code>
 
-export default () => {
-  return (
-    <>
-      <p>
-        <Button size="lg" btnType="default">
-          Default
-        </Button>
-        <Button disabled size="lg" btnType="default">
-          Default Disabled
-        </Button>
-      </p>
-      <p>
-        <Button size="lg" btnType="primary">
-          Primary
-        </Button>
-        <Button disabled size="lg" btnType="primary">
-          Primary Disabled
-        </Button>
-      </p>
-      <p>
-        <Button size="lg" btnType="danger">
-          Danger
-        </Button>
-        <Button disabled size="lg" btnType="danger">
-          Danger Disabled
-        </Button>
-      </p>
-      <p>
-        <Button size="lg" btnType="link" href="https://www.yidianzixun.com/">
-          Link
-        </Button>
-        <Button disabled size="lg" btnType="link" href="https://www.yidianzixun.com/">
-          Link Disabled
-        </Button>
-      </p>
-    </>
-  );
-};
-```
+<API src="./index.tsx" exports='["default"]'></API>
 
-<API src="/index.tsx" exports='["default"]'></API>
+## 类型简介
+
+| 属性名     | 描述         | 类型                                         | 默认值    |
+| ---------- | ------------ | -------------------------------------------- | --------- |
+| ButtonSize | 设置按钮大小 | `lg` 、 `sm`                                 | `lg`      |
+| ButtonType | 设置按钮类型 | `primary` 、 `default` 、 `danger` 、 `link` | `default` |

@@ -1,4 +1,6 @@
-.btn {
+$buttonPrefixCls: 'vo-button';
+
+.#{$buttonPrefixCls} {
   position: relative;
   display: inline-block;
   color: $body-color;
@@ -24,15 +26,14 @@
   }
 }
 
-.btn-lg {
-  @include button-size(
-    $btn-padding-y-lg,
-    $btn-padding-x-lg,
-    $btn-font-size-lg,
-    $btn-border-radius-lg
-  );
+.#{$buttonPrefixCls}-lg {
+  width: 100%;
+  display: block;
+  font-size: $btn-font-size-lg;
+  border-radius: $btn-border-radius-lg;
+  padding: $btn-padding-y-lg 0;
 }
-.btn-sm {
+.#{$buttonPrefixCls}-sm {
   @include button-size(
     $btn-padding-y-sm,
     $btn-padding-x-sm,
@@ -41,18 +42,18 @@
   );
 }
 
-.btn-primary {
+.#{$buttonPrefixCls}-primary {
   @include button-style($primary, $primary, $white);
 }
-.btn-danger {
+.#{$buttonPrefixCls}-danger {
   @include button-style($danger, $danger, $white);
 }
 
-.btn-default {
+.#{$buttonPrefixCls}-default {
   @include button-style($white, $gray-400, $body-color, $white, $primary, $primary);
 }
 
-.btn-link {
+.#{$buttonPrefixCls}-link {
   color: $btn-link-color;
   font-weight: $font-weight-normal;
   text-decoration: $link-decoration;

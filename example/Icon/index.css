@@ -1,0 +1,22 @@
+.icon-demo-wrapper {
+  width: 75px;
+  height: 100px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+.icon-demo-item {
+  margin: 16px 0 16px;
+  color: #323233;
+  font-size: 32px;
+  font-size: 30px;
+}
+.icon-demo-name {
+  display: block;
+  height: 36px;
+  margin: -4px 0 4px;
+  padding: 0 5px;
+  color: #646566;
+  font-size: 12px;
+  line-height: 18px;
+}

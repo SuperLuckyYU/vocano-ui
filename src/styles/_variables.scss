@@ -167,7 +167,7 @@ $border-width: $hd !default;
 $border-color: $gray-300 !default;
 
 $border-radius: 4 * $hd !default;
-$border-radius-lg: 8 * $hd !default;
+$border-radius-lg: 5 * $hd !default;
 $border-radius-sm: 2 * $hd !default;
 
 // box shadow
@@ -185,8 +185,8 @@ $btn-font-size: $font-size-base !default;
 $btn-line-height: $line-height-base !default;
 
 //button padding and font size
-$btn-padding-y-sm: 4 * $hd !default;
-$btn-padding-x-sm: 12 * $hd !default;
+$btn-padding-y-sm: 5 * $hd !default;
+$btn-padding-x-sm: 15 * $hd !default;
 $btn-font-size-sm: $font-size-sm !default;
 
 $btn-padding-y-lg: 8 * $hd !default;

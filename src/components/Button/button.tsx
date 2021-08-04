@@ -1,5 +1,5 @@
 // import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react'
-import React, { FC } from 'react'
+import React, { FC, CSSProperties, MouseEventHandler } from 'react'
 import classNames from 'classnames'
 
 export type ButtonSize = 'lg' | 'sm'
@@ -8,19 +8,25 @@ export type ButtonType = 'primary' | 'default' | 'danger' | 'link'
 export interface BaseButtonProps {
   /** 自定义类名 */
   className?: string;
+  /** 自定义样式 */
+  style?: CSSProperties;
   /** 设置禁用 */
   disabled?: boolean;
-  /** 按钮大小，可选值为'lg' || 'sm' */
+  /** 设置按钮大小 */
   size?: ButtonSize;
-  /** 类型，可选值为 'primary' || 'default' || 'danger' || 'link' */
+  /** 设置按钮类型 */
   btnType?: ButtonType;
   children: React.ReactNode;
   /** 类型为'link'类型时配置的跳转连接地址 */
   href?: string;
+  /** 点击按钮的点击回调函数 */
+  onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 }
+
 // type NativeButtonProps = BaseButtonProps & ButtonHTMLAttributes<HTMLElement>
 // type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>
 // export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>
+
 /**
  * 页面中最常用的的按钮元素，适合于完成特定的交互
  * ### 引用方法
@@ -39,12 +45,14 @@ const Button: FC<BaseButtonProps> = (props) => {
     href,
     ...restProps
   } = props
-  // btn, btn-lg, btn-primary
-  const classes = classNames('btn', className, {
-    [`btn-${btnType}`]: btnType,
-    [`btn-${size}`]: size,
+
+  const prefixCls = 'vo-button'
+  const classes = classNames(prefixCls, className, {
+    [`${prefixCls}-${btnType}`]: btnType,
+    [`${prefixCls}-${size}`]: size,
     'disabled': (btnType === 'link') && disabled,
   })
+
   if (btnType === 'link' && href ) {
     return (
       <a
@@ -56,6 +64,7 @@ const Button: FC<BaseButtonProps> = (props) => {
       </a>
     )
   }
+
   return (
     <button
       type='button'
@@ -72,6 +81,7 @@ Button.defaultProps = {
   disabled: false,
   btnType: 'default',
   size: 'lg',
+  onClick: () => {},
 }
 
 export default Button;
