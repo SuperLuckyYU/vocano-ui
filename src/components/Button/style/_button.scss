@@ -29,8 +29,8 @@ $buttonPrefixCls: 'vo-button';
 .#{$buttonPrefixCls}-lg {
   display: block;
   width: 100%;
-  font-size: $btn-font-size-lg;
   padding: $btn-padding-y-lg 0;
+  font-size: $btn-font-size-lg;
   border-radius: $btn-border-radius-lg;
 }
 .#{$buttonPrefixCls}-sm {
