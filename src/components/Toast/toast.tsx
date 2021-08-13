@@ -3,15 +3,9 @@ import ReactDOM from 'react-dom'
 import Popup from '../Popup'
 import { classNames, isFunction } from '../../utils'
 
-const componentName = 'toast'
+import { ToastProps } from './index.d'
 
-export interface ToastProps {
-  /** 内容 */
-  content: string,
-  /** 显示时间 */
-  duration?: number,
-  onClose?():void 
-}
+const componentName = 'toast'
 
 const Toast: FC<ToastProps> = ({
   content,
@@ -42,6 +36,10 @@ const Toast: FC<ToastProps> = ({
       </div>
     </Popup>
   )
+}
+
+Toast.defaultProps={
+  duration: 2000,
 }
 
 export default function toast(

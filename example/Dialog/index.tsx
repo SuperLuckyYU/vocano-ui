@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Dialog, Toast} from 'vocano-ui';
 
-
 // 默认
 function DefaultDallog() {
   const [visible, setVisible] = useState(false)
@@ -41,11 +40,12 @@ function HeaderDallog() {
         visible={visible}
         onCancel={hanldeCancel}
         header={headerRender}
+        className="my-hader-dalog"
       >
         主题内容
       </Dialog>
       <Button onClick={handleShow}>
-        自定义头部 和 头部关闭按钮
+        自定义头部和头部关闭按钮
       </Button>
     </div>
   )
@@ -53,18 +53,11 @@ function HeaderDallog() {
 
 
 export default () => {
-  const handleToast = () => {
-    Toast('21231',123)
-  }
 
   return (
     <div>
       <DefaultDallog />
       <HeaderDallog />
-
-      <Button onClick={handleToast}>
-        自定义头部 和 头部关闭按钮
-      </Button>
     </div>
   );
 };

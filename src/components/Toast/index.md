@@ -17,9 +17,9 @@ import { Toast } from 'vocano-ui';
 
 代码演示:
 
-<code src="../../../example/Dialog/index.tsx" hideActions='["CSB"]'></code>
+<code src="../../../example/Toast/index.tsx" hideActions='["CSB"]'></code>
 
-<API src="./index.tsx" exports='["default"]'></API>
+<!-- <API src="./index.tsx" exports='["default"]'></API> -->
 
 ## 类型简介
 

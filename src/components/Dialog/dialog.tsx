@@ -1,10 +1,9 @@
 import Popup from '../Popup'
 import React, { FC } from 'react'
-import { CSSTransition } from 'react-transition-group'
 import { classNames, isFunction } from '../../utils'
 import Icon from '../Icon'
 
-import { DialogProps, DialogWrapperProps, DialogContentProps } from './index.d'
+import { DialogProps, DialogContentProps } from './index.d'
 
 const componentName = 'dialog'
 
@@ -18,16 +17,14 @@ const DialogContent: FC<DialogContentProps> = ({
   const VNodes = {
     header: () => {
       if (header === null) return null
-      const classes = classNames(componentName, 'header')
       if (isFunction(header)) {
         return header()
       }
-      if (React.isValidElement(header)) {
-        return <div className={classes}> {header} </div>
+      if (header) {
+        return header
       }
-
       // defaultHeader
-      return <div className={classes}>
+      return <>
         <div
           onClick={onCancel}
           className={classNames(componentName, 'cancel-btn')}
@@ -37,29 +34,28 @@ const DialogContent: FC<DialogContentProps> = ({
             className={classNames(componentName, 'cancel-icon')}
           />
         </div>
-      </div>
+      </>
     },
     content: () => {
       if (content === null) return null
-      const classes = classNames(componentName, 'content')
-      return <div className={classes}>
-        {content}
-      </div>
+      return content
     },
     footer: () => {
       if (footer === null) return null
-      const classes = classNames(componentName, 'footer')
-      return <div className={classes}></div>
+      return null
     }
   }
 
-  const children = Object.keys(VNodes).map(key => VNodes[key]())
+  const children = Object.keys(VNodes).map(k => {
+    const classes = classNames(componentName, k)
+    return <div key={k} className={classes}>
+      {VNodes[k]()}
+    </div>
+  })
   const classes = classNames(componentName)
 
   return <div className={classes}> {children} </div>
 }
-
-
 
 const Dialog: FC<DialogProps> = ({
   className,
@@ -94,6 +90,7 @@ const Dialog: FC<DialogProps> = ({
 
 Dialog.defaultProps = {
   visible: false,
+  onCancel: () => {}
 }
 
 
