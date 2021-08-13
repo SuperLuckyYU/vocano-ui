@@ -1,6 +1,8 @@
 // import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react'
+import { faUserTimes } from '@fortawesome/free-solid-svg-icons'
 import React, { FC, CSSProperties, MouseEventHandler } from 'react'
-import classNames from 'classnames'
+// import classNames from 'classnames'
+import {classNames} from '../../utils'
 
 export type ButtonSize = 'lg' | 'sm'
 export type ButtonType = 'primary' | 'default' | 'danger' | 'link'
@@ -46,11 +48,11 @@ const Button: FC<BaseButtonProps> = (props) => {
     ...restProps
   } = props
 
-  const prefixCls = 'vo-button'
-  const classes = classNames(prefixCls, className, {
-    [`${prefixCls}-${btnType}`]: btnType,
-    [`${prefixCls}-${size}`]: size,
-    'disabled': (btnType === 'link') && disabled,
+  const classes = classNames('button', {
+    button: true,
+    btnType,
+    size,
+    disabled: (btnType === 'link') && disabled,
   })
 
   if (btnType === 'link' && href ) {
