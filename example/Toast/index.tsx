@@ -11,7 +11,7 @@ export default () => {
   return (
     <div>
       <Button onClick={handleToast}>
-        自定义头部 和 头部关闭按钮
+        默认
       </Button>
     </div>
   );
