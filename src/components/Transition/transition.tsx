@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition'
 
@@ -7,6 +7,7 @@ type AnimationName = 'zoom-in-top' | 'zoom-in-left' | 'zoom-in-bottom' | 'zoom-i
 type TransitionProps = CSSTransitionProps & {
   animation?: AnimationName,
   wrapper? : boolean,
+  children: ReactNode
 }
 
 const Transition: React.FC<TransitionProps> = (props) => {
@@ -17,6 +18,7 @@ const Transition: React.FC<TransitionProps> = (props) => {
     wrapper,
     ...restProps
   } = props
+
   return (
     <CSSTransition
       classNames = { classNames || animation}

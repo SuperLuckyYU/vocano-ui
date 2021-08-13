@@ -1,0 +1,30 @@
+.vo-toast {
+    background-color: #303133;
+    color: #fff;
+    padding: 30px 50px;
+    border-radius: 3px;
+}
+
+.toast-animation-enter,
+.toast-animation-appear {
+    opacity: 0;
+    transform: scale(0.4);
+}
+.toast-animation-enter-active,
+.toast-animation-appear-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 300ms, transform 300ms;
+}
+.toast-animation-exit {
+    opacity: 1;
+    transform: scale(1);
+}
+.toast-animation-exit-active {
+    opacity: 0;
+    transform: scale(0.4);
+    transition: opacity 300ms, transform 300ms;
+}
+.toast-animation-exit-done {
+    opacity: 0;
+}
