@@ -18,7 +18,6 @@ const Transition: React.FC<TransitionProps> = (props) => {
     wrapper,
     ...restProps
   } = props
-
   return (
     <CSSTransition
       classNames = { classNames || animation}

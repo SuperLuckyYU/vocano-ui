@@ -33,6 +33,7 @@ $dialogPrefixCls: "vo-dialog";
         justify-content: center;
         border: 1px solid #fff;
         opacity: 0.8;
+        cursor: pointer;
         .#{$dialogPrefixCls}-cancel-icon {
             font-size: 19px;
             font-weight: 400;

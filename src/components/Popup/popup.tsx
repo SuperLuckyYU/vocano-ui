@@ -42,7 +42,6 @@ const Wrapper: FC<WrapperProps> = ({
 }) => {
   timeout = timeout || 0
   const classes = `${animation}-animation`
-  console.log(visible, timeout, classes)
   return (
     <CSSTransition
       in={visible}
