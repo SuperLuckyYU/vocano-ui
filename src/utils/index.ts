@@ -71,7 +71,7 @@ export function classNames(...arg: (string | {})[]): string {
             valueItem = (valueItem as () => string)();
           }
           if (valueItem === true) {
-            addName(keyList[i])
+            addName(keyList[j])
           } else if (!!valueItem || valueItem === 0) {
             if (keyList[j] === 'customClassName') {
               names.push(valueItem as string)
