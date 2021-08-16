@@ -1,4 +1,4 @@
-import { FC, useRef, useEffect } from 'react'
+import React, { FC, useRef, useEffect } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { classNames, isFunction} from '../../utils'
 import {MaskProps, WrapperProps, PopupProps} from './index.d'
@@ -9,22 +9,23 @@ const componentName = 'popup'
 const handleMask = ({
   mask,
   visible,
-  maskStyle
+  maskStyle,
 }: MaskProps) => {
   if (!mask) return
   const idName = classNames('mask')
   const $mask:HTMLElement | null = document.getElementById(idName)
   const isShowMask = $mask !== null
-  
+
   // 显示遮罩层
   if(visible === true) {
     // 已经存在遮罩层
     if (isShowMask) return
     const divMask = document.createElement('div')
     divMask.id = idName
+    maskStyle && divMask.setAttribute('style', maskStyle)
     document.body.appendChild(divMask)
   }
- 
+
   // 隐藏遮罩层
   if(visible === false) {
     // 删除遮罩层
@@ -38,16 +39,16 @@ const Wrapper: FC<WrapperProps> = ({
   children,
   visible,
   animation,
-  timeout
+  timeout,
 }) => {
   timeout = timeout || 0
   const classes = `${animation}-animation`
   return (
     <CSSTransition
       in={visible}
-      timeout={timeout} //动画执行1秒
+      timeout={timeout} // 动画执行1秒
       classNames={classes}
-    > 
+    >
       {children}
     </CSSTransition>
   )
@@ -67,7 +68,7 @@ const Popup: FC<PopupProps> = ({
   const popupEl = useRef(null)
   const classes = classNames(componentName, {
     hide: true,
-    popup: true
+    popup: true,
   })
 
   const handlePopupClick = (e: any) => {
@@ -80,21 +81,21 @@ const Popup: FC<PopupProps> = ({
   }
 
   useEffect(() => {
-    const classes = classNames(componentName, {
+    const statusClasses = classNames(componentName, {
       popup: true,
-      hide: !visible
+      hide: !visible,
     })
     if (popupEl && popupEl.current){
       const current = popupEl.current || {className: ''}
       if (visible) {
-        current.className = classes
+        current.className = statusClasses
       } else {
         setTimeout(() => {
-          current.className = classes
+          current.className = statusClasses
         }, timeout)
       }
     }
-  }, [visible])
+  }, [visible, timeout])
 
   // 处理遮罩层
   handleMask({
@@ -105,7 +106,7 @@ const Popup: FC<PopupProps> = ({
 
   return (
     <div ref={popupEl} className={classes} onClick={handlePopupClick}>
-      <Wrapper 
+      <Wrapper
         animation={animation}
         timeout={timeout}
         visible={visible}
@@ -116,11 +117,10 @@ const Popup: FC<PopupProps> = ({
   )
 }
 
-
 Popup.defaultProps = {
   visible: false,
   mask: true,
-  timeout: 300
+  timeout: 300,
 }
 
 export default Popup;

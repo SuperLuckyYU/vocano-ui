@@ -1,71 +1,68 @@
 // variables
-@import "../../styles/variables";
+@import '../../styles/variables';
 
-$dialogPrefixCls: "vo-dialog";
+$dialogPrefixCls: 'vo-dialog';
 
 .#{$dialogPrefixCls} {
-    position: relative;
-    background: #fff;
-    border-radius: 2px;
-    display: table;
-    width: 80%;
-    max-width: 300px;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    background-color: #fff;
-    border-radius: 3px;
+  position: relative;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: table;
+  width: 80%;
+  max-width: 300px;
+  margin: auto;
+  background: #fff;
+  background-color: #fff;
+  border-radius: 3px;
 }
 
 .#{$dialogPrefixCls}-header {
-    .#{$dialogPrefixCls}-cancel-btn {
-        position: absolute;
-        top: -25px;
-        right: 0;
-        height: 22px;
-        width: 22px;
-        // background: #fff;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid #fff;
-        opacity: 0.8;
-        cursor: pointer;
-        .#{$dialogPrefixCls}-cancel-icon {
-            font-size: 19px;
-            font-weight: 400;
-            font-size: 14px;
-            color: #fff;
-        }
+  .#{$dialogPrefixCls}-cancel-btn {
+    position: absolute;
+    top: -25px;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0.8;
+    .#{$dialogPrefixCls}-cancel-icon {
+      color: #fff;
+      font-weight: 400;
+      font-size: 14px;
     }
+  }
 }
 .#{$dialogPrefixCls}-content {
-    padding: 10px;
+  padding: 10px;
 }
 
 .dialog-animation-enter,
 .dialog-animation-appear {
-    opacity: 0;
-    transform: scale(0.4);
+  transform: scale(0.4);
+  opacity: 0;
 }
 .dialog-animation-enter-active,
 .dialog-animation-appear-active {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 300ms, transform 300ms;
+  transform: scale(1);
+  opacity: 1;
+  transition: opacity 300ms, transform 300ms;
 }
 .dialog-animation-exit {
-    opacity: 1;
-    transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
 }
 .dialog-animation-exit-active {
-    opacity: 0;
-    transform: scale(0.4);
-    transition: opacity 300ms, transform 300ms;
+  transform: scale(0.4);
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
 }
 .dialog-animation-exit-done {
-    opacity: 0;
+  opacity: 0;
 }

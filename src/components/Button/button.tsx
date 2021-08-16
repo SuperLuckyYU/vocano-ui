@@ -1,5 +1,3 @@
-// import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react'
-import { faUserTimes } from '@fortawesome/free-solid-svg-icons'
 import React, { FC, CSSProperties, MouseEventHandler } from 'react'
 // import classNames from 'classnames'
 import {classNames} from '../../utils'
@@ -53,6 +51,7 @@ const Button: FC<BaseButtonProps> = (props) => {
     btnType,
     size,
     disabled: (btnType === 'link') && disabled,
+    customClassName: className,
   })
 
   if (btnType === 'link' && href ) {

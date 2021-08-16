@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect} from 'react'
+import React, { FC, useState} from 'react'
 import ReactDOM from 'react-dom'
 import Popup from '../Popup'
 import { classNames, isFunction } from '../../utils'
@@ -10,22 +10,21 @@ const componentName = 'toast'
 const Toast: FC<ToastProps> = ({
   content,
   duration,
-  onClose
+  onClose,
 }) => {
   const classes = classNames(componentName)
   const [visible, setVisible] = useState(true)
 
-  useEffect(() => {
+  if(visible){
     setTimeout(() => {
       setVisible(false)
       if(onClose && isFunction(onClose)) {
         onClose()
       }
     }, duration)
-  }, [visible])
-
+  }
   const renderContent = () => {
-    if (content && isFunction(content)) return content()
+    if (content && isFunction(content)) return (content as () => React.ReactNode)()
     return content
   }
 
@@ -45,12 +44,12 @@ Toast.defaultProps={
 export default function toast(
   content: string,
   duration: number,
-  onClose?:() => void
+  onClose?:() => void,
 ) {
-  const toast = document.createElement('div')
-  document.body.appendChild(toast)
+  const toastEl = document.createElement('div')
+  document.body.appendChild(toastEl)
   const handleClose = () => {
-    toast.remove()
+    toastEl.remove()
     if (onClose && isFunction(onClose)) {
       onClose()
     }
@@ -60,6 +59,6 @@ export default function toast(
       duration={duration}
       content={content}
       onClose={handleClose}
-    />, 
-  toast)
+    />,
+    toastEl)
 }

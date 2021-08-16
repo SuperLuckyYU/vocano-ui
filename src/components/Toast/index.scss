@@ -1,30 +1,30 @@
 .vo-toast {
-    background-color: #303133;
-    color: #fff;
-    padding: 3px 11px;
-    border-radius: 3px;
+  padding: 3px 11px;
+  color: #fff;
+  background-color: #303133;
+  border-radius: 3px;
 }
 
 .toast-animation-enter,
 .toast-animation-appear {
-    opacity: 0;
-    transform: scale(0.4);
+  transform: scale(0.4);
+  opacity: 0;
 }
 .toast-animation-enter-active,
 .toast-animation-appear-active {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 300ms, transform 300ms;
+  transform: scale(1);
+  opacity: 1;
+  transition: opacity 300ms, transform 300ms;
 }
 .toast-animation-exit {
-    opacity: 1;
-    transform: scale(1);
+  transform: scale(1);
+  opacity: 1;
 }
 .toast-animation-exit-active {
-    opacity: 0;
-    transform: scale(0.4);
-    transition: opacity 300ms, transform 300ms;
+  transform: scale(0.4);
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
 }
 .toast-animation-exit-done {
-    opacity: 0;
+  opacity: 0;
 }

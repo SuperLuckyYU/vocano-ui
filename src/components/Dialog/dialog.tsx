@@ -1,5 +1,5 @@
+import React, { ReactNode, FC } from 'react'
 import Popup from '../Popup'
-import React, { FC } from 'react'
 import { classNames, isFunction } from '../../utils'
 import Icon from '../Icon'
 
@@ -8,23 +8,22 @@ import { DialogProps, DialogContentProps } from './index.d'
 const componentName = 'dialog'
 
 const DialogContent: FC<DialogContentProps> = ({
-  visible,
   onCancel,
   header,
   content,
-  footer
+  footer,
 }) => {
   const VNodes = {
     header: () => {
       if (header === null) return null
       if (isFunction(header)) {
-        return header()
+        return (header as () => ReactNode)()
       }
       if (header) {
         return header
       }
       // defaultHeader
-      return <>
+      return (<>
         <div
           onClick={onCancel}
           className={classNames(componentName, 'cancel-btn')}
@@ -34,7 +33,7 @@ const DialogContent: FC<DialogContentProps> = ({
             className={classNames(componentName, 'cancel-icon')}
           />
         </div>
-      </>
+      </>)
     },
     content: () => {
       if (content === null) return null
@@ -42,15 +41,15 @@ const DialogContent: FC<DialogContentProps> = ({
     },
     footer: () => {
       if (footer === null) return null
-      return null
-    }
+      return footer
+    },
   }
 
   const children = Object.keys(VNodes).map(k => {
     const classes = classNames(componentName, k)
-    return <div key={k} className={classes}>
-      {VNodes[k]()}
-    </div>
+    return (<div key={k} className={classes}>
+      { VNodes[(k as keyof typeof VNodes)]() }
+    </div>)
   })
   const classes = classNames(componentName)
 
@@ -63,34 +62,32 @@ const Dialog: FC<DialogProps> = ({
   visible,
 
   header,
-  children, //内容
+  children,
   footer,
 
-  onCancel
+  onCancel,
   // onOK,
   // okText
-}) => {
-  return (
-    <Popup
-      animation={componentName}
+}) => (
+  <Popup
+    animation={componentName}
+    visible={visible}
+  >
+    <DialogContent
       visible={visible}
-    >
-      <DialogContent
-        visible={visible}
-        onCancel={onCancel}
-        className={className}
-        header={header}
-        content={children}
-        footer={footer}
-      />
-    </Popup>
-  )
-}
+      onCancel={onCancel}
+      className={className}
+      header={header}
+      content={children}
+      footer={footer}
+    />
+  </Popup>
+)
 
 
 Dialog.defaultProps = {
   visible: false,
-  onCancel: () => {}
+  onCancel: () => {},
 }
 
 
