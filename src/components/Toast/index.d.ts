@@ -4,5 +4,5 @@ export interface ToastProps {
   /** 显示时间 */
   duration?: number;
   /** toast关闭后的回调 */
-  onClose?(): void;
+  onClose?: () => void;
 }

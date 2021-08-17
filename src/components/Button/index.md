@@ -2,8 +2,11 @@
 nav:
   title: 组件
   path: /components
+group:
+  title: Button 按钮
 ---
 
+# Button 按钮
 ## 介绍
 
 > 按钮用于触发一个操作，如提交表单。

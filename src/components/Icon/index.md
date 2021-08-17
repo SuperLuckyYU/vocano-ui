@@ -3,9 +3,10 @@ nav:
   title: 组件
   path: /components
 group:
-  title: Icon
+  title: Icon 图标
 ---
 
+# Icon 图标
 ## 介绍
 
 > 基于 `Font Awesome` 字体的图标集，可以通过 `Icon` 组件使用。https://fontawesome.com/

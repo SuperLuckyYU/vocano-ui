@@ -21,7 +21,7 @@ export interface DialogContentProps {
   onCancel?(): void;
 }
 
-export interface DialogProps extends DialogContentProps, DialogWrapperProps {
+export interface DialogProps extends DialogContentProps {
   /** 对话框是否可见 */
   visible: boolean;
   /** 是否展示遮罩 */

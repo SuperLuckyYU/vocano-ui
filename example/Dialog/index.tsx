@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Dialog, Toast} from 'vocano-ui';
+import { Button, Dialog } from 'vocano-ui';
 
 // 默认
 function DefaultDallog() {
   const [visible, setVisible] = useState(false)
   const handleShow = () => setVisible(true)
   const hanldeCancel = () => setVisible(false)
-  
+
   return (
     <div>
       <Dialog
@@ -26,14 +26,12 @@ function HeaderDallog() {
   const [visible, setVisible] = useState(false)
   const handleShow = () => setVisible(true)
   const hanldeCancel = () => setVisible(false)
-  const headerRender = () => {
-    return <div className="my-header">
-      header 
+  const headerRender = () => (<div className="my-header">
+      header
       <Button size="sm" btnType="primary"  onClick={hanldeCancel}>
         关闭弹框
       </Button>
-    </div>
-  }
+    </div>)
   return (
     <div>
       <Dialog
@@ -52,12 +50,9 @@ function HeaderDallog() {
 }
 
 
-export default () => {
-
-  return (
-    <div>
-      <DefaultDallog />
-      <HeaderDallog />
-    </div>
-  );
-};
+export default () => (
+  <div>
+    <DefaultDallog />
+    <HeaderDallog />
+  </div>
+);

@@ -52,7 +52,7 @@ const vo$ = (selector: string, context?: Document) => {
 
   const findFn = find[type as keyof typeof find];
   if (findFn) {
-    return findFn(selector, context || document.body);
+    return findFn(selector, context);
   }
 };
 export default vo$;
