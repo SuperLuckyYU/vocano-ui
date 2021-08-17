@@ -45,7 +45,7 @@
     "test:nowatch": "cross-env CI=true react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext js,ts,tsx src --max-warnings 5",
-    "lint:style": "stylelint \"{src, components}/**/*.scss\" --syntax scss",
+    "lint:style": "stylelint --fix \"{src, components}/**/*.scss\" --syntax scss",
     "lint:prettier": "prettier --check \"src/**/*\" --end-of-line auto",
     "prettier": "prettier -c --write \"src/**/*\"",
     "prepublishOnly": "npm run test:nowatch && npm run lint && npm run lint:style && npm run build",
