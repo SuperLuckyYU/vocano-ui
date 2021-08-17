@@ -1,4 +1,4 @@
-import Button from './button'
+import Button from './button';
 import '../../styles/index.scss';
 
-export default Button
+export default Button;

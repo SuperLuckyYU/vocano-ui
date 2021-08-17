@@ -46,13 +46,15 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ext js,ts,tsx src --max-warnings 5",
     "lint:style": "stylelint \"{src, components}/**/*.scss\" --syntax scss",
+    "lint:prettier": "prettier --check \"src/**/*\" --end-of-line auto",
+    "prettier": "prettier -c --write \"src/**/*\"",
     "prepublishOnly": "npm run test:nowatch && npm run lint && npm run lint:style && npm run build",
     "start:docs": "dumi dev",
     "docs:build": "dumi build"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test:nowatch && npm run lint && npm run lint:style"
+      "pre-commit": "npm run test:nowatch && npm run prettier && npm run lint && npm run lint:style"
     }
   },
   "eslintConfig": {

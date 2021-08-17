@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode } from 'react';
 
 export interface MaskProps {
   /** 是否需要遮罩层 */
@@ -9,20 +9,19 @@ export interface MaskProps {
   visible?: boolean;
 }
 
-
 export interface WrapperProps {
   /** 弹框的内容 */
   children?: ReactNode;
   /** 自定义类名 */
   className?: string;
   /** 内容是否可见  */
-  visible?: boolean
+  visible?: boolean;
   /** 内容动画时间  */
-  timeout?: number,
+  timeout?: number;
   /** 动画名称  */
-  animation?: string
+  animation?: string;
 }
 
 export interface PopupProps extends MaskProps, WrapperProps {
-  onClick?() : void;
+  onClick?(): void;
 }

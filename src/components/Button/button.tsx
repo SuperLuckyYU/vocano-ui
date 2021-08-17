@@ -1,9 +1,9 @@
-import React, { FC, CSSProperties, MouseEventHandler } from 'react'
+import React, { FC, CSSProperties, MouseEventHandler } from 'react';
 // import classNames from 'classnames'
-import {classNames} from '../../utils'
+import { classNames } from '../../utils';
 
-export type ButtonSize = 'lg' | 'sm'
-export type ButtonType = 'primary' | 'default' | 'danger' | 'link'
+export type ButtonSize = 'lg' | 'sm';
+export type ButtonType = 'primary' | 'default' | 'danger' | 'link';
 
 export interface BaseButtonProps {
   /** 自定义类名 */
@@ -35,54 +35,37 @@ export interface BaseButtonProps {
  * import { Button } from 'vocano-ui'
  * ~~~
  */
-const Button: FC<BaseButtonProps> = (props) => {
-  const {
-    btnType,
-    className,
-    disabled,
-    size,
-    children,
-    href,
-    ...restProps
-  } = props
+const Button: FC<BaseButtonProps> = props => {
+  const { btnType, className, disabled, size, children, href, ...restProps } = props;
 
   const classes = classNames('button', {
     button: true,
     btnType,
     size,
-    disabled: (btnType === 'link') && disabled,
+    disabled: btnType === 'link' && disabled,
     customClassName: className,
-  })
+  });
 
-  if (btnType === 'link' && href ) {
+  if (btnType === 'link' && href) {
     return (
-      <a
-        className={classes}
-        href={href}
-        {...restProps}
-      >
+      <a className={classes} href={href} {...restProps}>
         {children}
       </a>
-    )
+    );
   }
 
   return (
-    <button
-      type='button'
-      className={classes}
-      disabled={disabled}
-      {...restProps}
-    >
+    <button type="button" className={classes} disabled={disabled} {...restProps}>
       {children}
     </button>
-  )
-}
+  );
+};
 
 Button.defaultProps = {
   disabled: false,
   btnType: 'default',
   size: 'lg',
   onClick: () => {},
-}
+};
 
 export default Button;

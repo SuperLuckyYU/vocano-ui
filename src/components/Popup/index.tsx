@@ -1,4 +1,4 @@
-import Popup from './popup'
+import Popup from './popup';
 import './index.scss';
 
-export default Popup
+export default Popup;

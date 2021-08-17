@@ -5,7 +5,7 @@ export interface DialogWrapperProps {
 
 export interface DialogContentProps {
   /** 对话框是否可见 */
-  visible?: boolean,
+  visible?: boolean;
   /** 自定义类名 */
   className?: string;
   /** 对话框头部 */
@@ -23,7 +23,7 @@ export interface DialogContentProps {
 
 export interface DialogProps extends DialogContentProps, DialogWrapperProps {
   /** 对话框是否可见 */
-  visible: boolean,
+  visible: boolean;
   /** 是否展示遮罩 */
   mask?: boolean;
 }

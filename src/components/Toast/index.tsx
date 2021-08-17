@@ -1,4 +1,4 @@
-import toast from './toast'
-import './index.scss'
+import toast from './toast';
+import './index.scss';
 
-export default toast
+export default toast;
