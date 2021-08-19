@@ -26,6 +26,13 @@ export function isPromise(value: any): Boolean {
   );
 }
 
+/**
+ * Make all properties in T optional
+ */
+export type Partial<T> = {
+  [P in keyof T]?: T[P];
+}
+
 export function classNames(...arg: (string | {})[]): string {
   if (!arg || arg.length === 0) return '';
 
