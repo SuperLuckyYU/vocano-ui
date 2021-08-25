@@ -11,7 +11,7 @@
 @import 'animation';
 
 // button
-@import '../components/Button/style/button';
+@import '../components/Button/style';
 
 // menu
 @import '../components/Menu/style';
@@ -29,7 +29,10 @@
 @import '../components/Radio/style';
 
 // Dialog
-@import '../components/Dialog/index.scss';
+@import '../components/Dialog/style';
 
 // Toast
-@import '../components/Toast/index.scss';
+@import '../components/Toast/style';
+
+// Popup
+@import '../components/Popup/style';

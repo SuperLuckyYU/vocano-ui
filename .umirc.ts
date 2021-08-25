@@ -8,10 +8,6 @@ export default defineConfig({
   logo: 'https://static.yidianzixun.com/modules/build/download/images/pc_banner_logo_x1-edf31fe9.png',
   outputPath: 'docs-dist',
   mode: 'site',
-  sass: {
-    implementation: require('node-sass'),
-    sassOptions: {},
-  },
   exportStatic: {},
   locales: [['zh-CN', '中文'], ['en-US', 'English']],
   navs: [
@@ -21,4 +17,9 @@ export default defineConfig({
       path: 'https://github.com/SuperLuckyYU/vocano-ui.git',
     },
   ],
+  sass: {
+    implementation: require('node-sass'),
+    sassOptions: {},
+  },
 } as IConfig);
+

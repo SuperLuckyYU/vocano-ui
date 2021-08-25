@@ -1,6 +1,6 @@
 {
   "name": "vocano-ui",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "private": false,
   "description": "React components library",
   "author": "Chengyu Hao",
@@ -40,6 +40,7 @@
     "clean": "rimraf ./dist",
     "build": "npm run clean && npm run build-ts && npm run build-css",
     "build-ts": "tsc -p tsconfig.build.json",
+    "build-css-test": "node-sass ./src/**/*.scss ./dist/",
     "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
     "test": "react-scripts test",
     "test:nowatch": "cross-env CI=true react-scripts test",

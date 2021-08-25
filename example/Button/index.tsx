@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Button } from 'vocano-ui';
+import '../../src/styles/index.scss';
 
 export default () => (
     <>
