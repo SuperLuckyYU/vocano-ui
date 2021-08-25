@@ -12,3 +12,4 @@ export { default as Transition } from './components/Transition';
 export { default as Radio } from './components/Radio';
 export { default as Dialog } from './components/Dialog';
 export { default as Toast } from './components/Toast';
+export { default as Skeleton } from './components/Skeleton';

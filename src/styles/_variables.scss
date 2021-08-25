@@ -293,3 +293,12 @@ $radio-circle-border-radius: 50% !default;
 $radio-circle-bg: $white !default;
 $radio-active-bg: $vo-red !default;
 $radio-label-font-size: 14 * $hd !default;
+
+// Skeleton
+$skeleton-wrap-padding: 16 * $hd !default;
+$loading-grey: #ededed;
+$skeleton-row-height: 16 * $hd !default;
+$skeleton-title-height: 20 * $hd !default;
+$skeleton-row-margin-top: 12 * $hd !default;
+$skeleton-title-margin-bottom: 20 * $hd !default;
+$skeleton-row-border-radius: 4 * $hd !default;

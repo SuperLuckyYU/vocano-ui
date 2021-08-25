@@ -1,0 +1,38 @@
+$skeletonPrefixCls: 'vo-skeleton';
+.#{$skeletonPrefixCls}-wrapper {
+  width: 100%;
+  padding: 0 $skeleton-wrap-padding;
+  overflow: hidden;
+}
+
+.#{$skeletonPrefixCls}-row,
+.#{$skeletonPrefixCls}-title {
+  min-height: $skeleton-row-height;
+  margin-top: $skeleton-row-margin-top;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 60%
+  )
+    $loading-grey;
+  background-color: $loading-grey;
+  background-position-x: 180%;
+  background-size: 200% 100%;
+  border-radius: $skeleton-row-border-radius;
+  animation: 1s loading ease-in-out infinite;
+  animation-delay: 0.06s;
+}
+
+.#{$skeletonPrefixCls}-title {
+  width: 50%;
+  min-height: $skeleton-title-height;
+  margin-top: 0;
+  margin-bottom: $skeleton-title-margin-bottom;
+}
+
+@keyframes loading {
+  to {
+    background-position-x: -20%;
+  }
+}
