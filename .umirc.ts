@@ -21,5 +21,9 @@ export default defineConfig({
     implementation: require('node-sass'),
     sassOptions: {},
   },
+  styles: [
+    `.__dumi-default-device { width: 375px !important; }
+    .__dumi-default-device-status span:first-child { visibility: hidden !important; }`,
+  ],
 } as IConfig);
 

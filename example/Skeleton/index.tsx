@@ -4,6 +4,6 @@ import { Skeleton } from 'vocano-ui';
 
 export default () => (
     <>
-      <Skeleton row={3} title />
+      <Skeleton row={3} title image={4} />
     </>
   );

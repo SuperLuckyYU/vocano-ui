@@ -1,27 +1,80 @@
 $skeletonPrefixCls: 'vo-skeleton';
 .#{$skeletonPrefixCls}-wrapper {
   width: 100%;
-  padding: 0 $skeleton-wrap-padding;
+  // padding: 0 $skeleton-wrap-padding;
   overflow: hidden;
 }
 
+.#{$skeletonPrefixCls}-image,
 .#{$skeletonPrefixCls}-row,
 .#{$skeletonPrefixCls}-title {
   min-height: $skeleton-row-height;
   margin-top: $skeleton-row-margin-top;
   background: linear-gradient(
-    100deg,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0.5) 50%,
-    rgba(255, 255, 255, 0) 60%
-  )
+      100deg,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 60%
+    )
     $loading-grey;
   background-color: $loading-grey;
   background-position-x: 180%;
   background-size: 200% 100%;
   border-radius: $skeleton-row-border-radius;
   animation: 1s loading ease-in-out infinite;
-  animation-delay: 0.06s;
+}
+.#{$skeletonPrefixCls}-images-wrapper {
+  font-size: 0;
+  .#{$skeletonPrefixCls}-image {
+    display: inline-block;
+    width: 110px;
+    height: 110px;
+    font-size: 16px;
+    &：only-child {
+      width: 160px;
+      height: 160px;
+      border-radius: 5px;
+    }
+    &:nth-child(3n + 2) {
+      margin: 0 3px;
+    }
+    &:nth-child(n + 4) {
+      margin-top: 3px;
+    }
+    &:first-child {
+      border-top-left-radius: 5px;
+    }
+    &:last-child {
+      margin-right: 0;
+      border-bottom-right-radius: 5px;
+    }
+    &:nth-child(3n + 1) {
+      &:last-child,
+      &:nth-last-child(2),
+      &:nth-last-child(3) {
+        border-bottom-left-radius: 5px;
+      }
+    }
+    &:nth-child(2):last-child,
+    &:nth-child(3) {
+      border-top-right-radius: 5px;
+    }
+    &:nth-child(2):nth-last-child(3) {
+      margin-right: 110px;
+      border-top-right-radius: 5px;
+    }
+    &:nth-child(3):nth-last-child(2) {
+      margin-top: 3px;
+      margin-right: 3px;
+      border-radius: 0 0 0 5px;
+    }
+    &:nth-child(4):last-child {
+      border-radius: 0 0 5px 0;
+    }
+  }
+}
+.#{$skeletonPrefixCls}-row {
+  animation-delay: 0.05s;
 }
 
 .#{$skeletonPrefixCls}-title {

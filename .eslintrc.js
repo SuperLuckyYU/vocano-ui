@@ -36,7 +36,7 @@ module.exports = {
     {
       // In v2, explicitly apply eslint-plugin-markdown's `markdown`
       // processor on any Markdown files you want to lint.
-      files: ['components/*/demo/*.md'],
+      files: ['components/*/*.md'],
       processor: 'markdown/markdown',
     },
     {

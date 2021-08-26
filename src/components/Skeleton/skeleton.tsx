@@ -12,6 +12,8 @@ export interface SkeletonProps {
   rowWidth?: number | string | (number | string)[];
   /** 是否显示标题占位图 */
   title?: boolean;
+  /** 图片占位图个数 */
+  image?: number | string;
 }
 
 const componentName = 'skeleton';
@@ -27,7 +29,7 @@ const DEFAULT_LAST_ROW_WIDTH = '60%';
  * ~~~
  */
 const Skeleton: FC<SkeletonProps> = props => {
-  const { className, row, rowWidth, title, ...restProps } = props;
+  const { className, row, rowWidth, title, image, ...restProps } = props;
 
   const classes = classNames('skeleton', 'wrapper', {
     customClassName: className,
@@ -62,16 +64,23 @@ const Skeleton: FC<SkeletonProps> = props => {
     }
   };
 
+  const renderImages = () =>
+    Array(image)
+      .fill('')
+      .map(() => <div key={uid()} className={classNames(componentName, 'image')} />);
+
   return (
     <div className={classes} {...restProps}>
       {renderTitle()}
       {renderRows()}
+      {image && <div className={classNames(componentName, 'images-wrapper')}>{renderImages()}</div>}
     </div>
   );
 };
 
 Skeleton.defaultProps = {
   row: 0,
+  image: 0,
   rowWidth: '100%',
   title: false,
 };
