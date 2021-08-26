@@ -11,11 +11,11 @@ $skeletonPrefixCls: 'vo-skeleton';
   min-height: $skeleton-row-height;
   margin-top: $skeleton-row-margin-top;
   background: linear-gradient(
-      100deg,
-      rgba(255, 255, 255, 0) 40%,
-      rgba(255, 255, 255, 0.5) 50%,
-      rgba(255, 255, 255, 0) 60%
-    )
+    100deg,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 60%
+  )
     $loading-grey;
   background-color: $loading-grey;
   background-position-x: 180%;
