@@ -27,19 +27,19 @@ $skeletonPrefixCls: 'vo-skeleton';
   font-size: 0;
   .#{$skeletonPrefixCls}-image {
     display: inline-block;
-    width: 110px;
-    height: 110px;
+    width: 109px;
+    height: 109px;
     font-size: 16px;
-    &：only-child {
-      width: 160px;
-      height: 160px;
+    &:only-child {
+      width: 163px;
+      height: 217px;
       border-radius: 5px;
     }
     &:nth-child(3n + 2) {
-      margin: 0 3px;
+      margin: 0 2px;
     }
     &:nth-child(n + 4) {
-      margin-top: 3px;
+      margin-top: 2px;
     }
     &:first-child {
       border-top-left-radius: 5px;
@@ -64,8 +64,8 @@ $skeletonPrefixCls: 'vo-skeleton';
       border-top-right-radius: 5px;
     }
     &:nth-child(3):nth-last-child(2) {
-      margin-top: 3px;
-      margin-right: 3px;
+      margin-top: 2px;
+      margin-right: 2px;
       border-radius: 0 0 0 5px;
     }
     &:nth-child(4):last-child {

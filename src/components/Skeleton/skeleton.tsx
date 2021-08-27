@@ -14,6 +14,9 @@ export interface SkeletonProps {
   title?: boolean;
   /** 图片占位图个数 */
   image?: number | string;
+  /** 是否显示骨架屏，传 false 时会展示子组件内容 */
+  loading?: boolean;
+  children?: React.ReactNode;
 }
 
 const componentName = 'skeleton';
@@ -29,7 +32,7 @@ const DEFAULT_LAST_ROW_WIDTH = '60%';
  * ~~~
  */
 const Skeleton: FC<SkeletonProps> = props => {
-  const { className, row, rowWidth, title, image, ...restProps } = props;
+  const { className, row, rowWidth, title, image, loading, children, ...restProps } = props;
 
   const classes = classNames('skeleton', 'wrapper', {
     customClassName: className,
@@ -69,12 +72,33 @@ const Skeleton: FC<SkeletonProps> = props => {
       .fill('')
       .map(() => <div key={uid()} className={classNames(componentName, 'image')} />);
 
+  // const renderSkeleton = () => {
+  //   if (!loading) {
+  //     return children;
+  //   }
+  //   return (
+  //     <div className={classes} {...restProps}>
+  //       {renderTitle()}
+  //       {renderRows()}
+  //       {image && <div className={classNames(componentName, 'images-wrapper')}>{renderImages()}</div>}
+  //     </div>
+  //   )
+  // }
+
   return (
-    <div className={classes} {...restProps}>
-      {renderTitle()}
-      {renderRows()}
-      {image && <div className={classNames(componentName, 'images-wrapper')}>{renderImages()}</div>}
-    </div>
+    <>
+      {loading ? (
+        <div className={classes} {...restProps}>
+          {renderTitle()}
+          {renderRows()}
+          {image && (
+            <div className={classNames(componentName, 'images-wrapper')}>{renderImages()}</div>
+          )}
+        </div>
+      ) : (
+        children
+      )}
+    </>
   );
 };
 
@@ -83,6 +107,7 @@ Skeleton.defaultProps = {
   image: 0,
   rowWidth: '100%',
   title: false,
+  loading: true,
 };
 
 export default Skeleton;
