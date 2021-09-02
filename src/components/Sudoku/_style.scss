@@ -1,20 +1,20 @@
 $sudokuPrefixCls: 'vo-sudoku';
 
 .#{$sudokuPrefixCls}-images-wrapper {
+  padding-top: $skeleton-row-margin-top;
+  padding-bottom: $skeleton-row-margin-top;
   display: flex;
   flex: 1;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding-top: $skeleton-row-margin-top;
-  padding-bottom: $skeleton-row-margin-top;
   font-size: 0;
 
   &.#{$sudokuPrefixCls}-image-one {
     .#{$sudokuPrefixCls}-image-outer {
       width: 66.6% !important;
       height: 163px;
-      .#{$sudokuPrefixCls}-image-watermark {
+      img {
         width: 40%;
       }
     }
@@ -24,36 +24,30 @@ $sudokuPrefixCls: 'vo-sudoku';
     width: 66.66%;
     .#{$sudokuPrefixCls}-image-outer {
       width: 49.6%;
+      padding-top: 49.6%;
       height: 0;
       margin-bottom: 0.4%;
-      padding-top: 49.6%;
     }
   }
 
   .#{$sudokuPrefixCls}-image-outer {
     .#{$sudokuPrefixCls}-image {
+      width: 100%;
+      height: 100%;
       position: absolute;
-      top: 0;
       left: 0;
+      top: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
     }
-
     position: relative;
-    width: $sudoku-image-width-percentage;
+    width: 33%;
     height: 0;
-    margin-top: $sudoku-image-space;
-    padding-top: $sudoku-image-width-percentage;
+    padding-top: 33%;
     font-size: 16px;
-    .#{$sudokuPrefixCls}-image-item {
-      width: 100%;
-      height: 100%;
-    }
-    .#{$sudokuPrefixCls}-image-watermark {
+    margin-top: 0.5%;
+    img {
       width: 60%;
     }
     &:only-child {
@@ -63,7 +57,7 @@ $sudokuPrefixCls: 'vo-sudoku';
     }
   }
   .#{$sudokuPrefixCls}-image-placeholder {
-    width: $sudoku-image-width-percentage;
+    width: 33%;
     height: 0;
   }
 }
@@ -72,11 +66,11 @@ $sudokuPrefixCls: 'vo-sudoku';
   min-height: $skeleton-row-height;
   margin-top: $skeleton-row-margin-top;
   background: linear-gradient(
-    100deg,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0.5) 50%,
-    rgba(255, 255, 255, 0) 60%
-  )
+      100deg,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 60%
+    )
     $loading-grey;
   background-color: $loading-grey;
   background-position-x: 180%;
