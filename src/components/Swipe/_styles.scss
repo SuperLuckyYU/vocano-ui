@@ -1,0 +1,45 @@
+$swipePrefixCls: 'vo-swipe';
+
+.#{$swipePrefixCls} {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  .#{$swipePrefixCls}-track {
+    display: flex;
+    height: 100%;
+  }
+  .#{$swipePrefixCls}-item {
+    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+    min-height: 150px;
+    text-align: center;
+    background-color: #39a9ed;
+  }
+  .#{$swipePrefixCls}-indicators {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    display: flex;
+    transform: translateX(-50%);
+  }
+
+  .#{$swipePrefixCls}-indicator {
+    width: 6px;
+    height: 6px;
+    background-color: $gray-300;
+    border-radius: 100%;
+    opacity: 0.3;
+    transition: opacity 0.2s, background-color 0.2s;
+
+    &:not(:last-child) {
+      margin-right: 6px;
+    }
+
+    &-active {
+      background-color: $blue;
+      opacity: 1;
+    }
+  }
+}

@@ -1,3 +1,5 @@
+import { TouchEvent } from 'react';
+
 export function isObject(value: unknown): Boolean {
   return Object.prototype.toString.call(value) === '[object Object]';
 }
@@ -107,4 +109,48 @@ export function classNames(...arg: (string | {})[]): string {
   getName(classNameList);
 
   return names.join(' ');
+}
+
+export const inBrowser = typeof window !== 'undefined';
+
+// const root = (inBrowser ? window : global) as Window;
+
+// let prev = Date.now();
+
+// function rafPolyfill(fn: FrameRequestCallback): number {
+//   const curr = Date.now();
+//   const ms = Math.max(0, 16 - (curr - prev));
+//   const id = setTimeout(fn, ms);
+//   prev = curr + ms;
+//   return id;
+// }
+
+// export function raf(fn: FrameRequestCallback): number {
+//   const requestAnimationFrame = root.requestAnimationFrame || rafPolyfill;
+//   return requestAnimationFrame.call(root, fn);
+// }
+
+// // double raf for animation
+// export function doubleRaf(fn: FrameRequestCallback): void {
+//   raf(() => raf(fn));
+// }
+
+export function stopPropagation(event: TouchEvent) {
+  event.stopPropagation();
+}
+
+export function preventDefault(event: TouchEvent, isStopPropagation?: boolean) {
+  /* istanbul ignore else */
+  if (typeof event.cancelable !== 'boolean' || event.cancelable) {
+    event.preventDefault();
+  }
+
+  if (isStopPropagation) {
+    stopPropagation(event);
+  }
+}
+
+/** clamps number within the inclusive lower and upper bounds */
+export function clamp(num: number, min: number, max: number): number {
+  return Math.min(Math.max(num, min), max);
 }

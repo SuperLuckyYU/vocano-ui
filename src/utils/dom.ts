@@ -1,4 +1,5 @@
 import { rtrim } from './rules';
+
 // 获取页面 id class tag 元素元素
 // 未测试 慎重使用～～
 const vo$ = (selector: string, context?: Document) => {
@@ -55,4 +56,5 @@ const vo$ = (selector: string, context?: Document) => {
     return findFn(selector, context);
   }
 };
+
 export default vo$;
