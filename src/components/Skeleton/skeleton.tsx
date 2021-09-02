@@ -1,4 +1,6 @@
 import React, { FC, CSSProperties } from 'react';
+import Sudoku from '../Sudoku';
+
 import { classNames, uid } from '../../utils';
 
 export interface SkeletonProps {
@@ -14,6 +16,8 @@ export interface SkeletonProps {
   title?: boolean;
   /** 图片占位图个数 */
   image?: number | string;
+  /** 图片水印 */
+  waterMark?: string;
   /** 是否显示骨架屏，传 false 时会展示子组件内容 */
   loading?: boolean;
   children?: React.ReactNode;
@@ -32,7 +36,8 @@ const DEFAULT_LAST_ROW_WIDTH = '60%';
  * ~~~
  */
 const Skeleton: FC<SkeletonProps> = props => {
-  const { className, row, rowWidth, title, image, loading, children, ...restProps } = props;
+  const { className, row, rowWidth, title, image, loading, waterMark, children, ...restProps } =
+    props;
 
   const classes = classNames('skeleton', 'wrapper', {
     customClassName: className,
@@ -67,10 +72,10 @@ const Skeleton: FC<SkeletonProps> = props => {
     }
   };
 
-  const renderImages = () =>
-    Array(image)
-      .fill('')
-      .map(() => <div key={uid()} className={classNames(componentName, 'image')} />);
+  // const renderImages = () =>
+  //   Array(image)
+  //     .fill('')
+  //     .map(() => <div key={uid()} className={classNames(componentName, 'image')} />);
 
   // const renderSkeleton = () => {
   //   if (!loading) {
@@ -92,7 +97,8 @@ const Skeleton: FC<SkeletonProps> = props => {
           {renderTitle()}
           {renderRows()}
           {image && (
-            <div className={classNames(componentName, 'images-wrapper')}>{renderImages()}</div>
+            <Sudoku images={image} waterMark={waterMark} />
+            /* <div className={classNames(componentName, 'images-wrapper')}>{renderImages()}</div> */
           )}
         </div>
       ) : (
@@ -108,6 +114,7 @@ Skeleton.defaultProps = {
   rowWidth: '100%',
   title: false,
   loading: true,
+  waterMark: '',
 };
 
 export default Skeleton;
