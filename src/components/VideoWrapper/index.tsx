@@ -1,8 +1,8 @@
 import React, { FC, CSSProperties } from 'react';
 import { classNames, formatTimestamp } from '../../utils';
 
-type Size = string | number | undefined;
-type GetDirection = (width: Size, height: Size) => number;
+type size = string | number | undefined;
+type GetDirection = (width: size, height: size) => number;
 type GetNumber = (value: string) => number;
 type VideoClickFn = (url: string | undefined) => void;
 type FormatTime = (time: string | number) => string;
@@ -12,11 +12,11 @@ export interface VideoWrapperProps {
   /** 自定义样式 */
   style?: CSSProperties;
   /** 视频的宽度 */
-  width?: Size;
+  width?: number | string;
   /** 视频的高度 */
-  height?: Size;
+  height?: number | string;
   /** 视频的时间 */
-  time?: Size;
+  time?: string | number;
   /** 视频的poster预览图 */
   poster?: string;
   /** 视频或者doc地址 */
@@ -82,8 +82,8 @@ const VideoWrapper: FC<VideoWrapperProps> = props => {
     >
       <img
         className={classNames(componentName, 'play-button')}
-        alt="play button"
-        src="https://si1.go2yd.com/get-image/0tSYIf996Zt"
+        alt='play button'
+        src='https://si1.go2yd.com/get-image/0tSYIf996Zt'
       />
       <span className={classNames(componentName, 'time')}>{formatTime(time as string)}</span>
     </div>
