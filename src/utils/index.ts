@@ -154,3 +154,23 @@ export function preventDefault(event: TouchEvent, isStopPropagation?: boolean) {
 export function clamp(num: number, min: number, max: number): number {
   return Math.min(Math.max(num, min), max);
 }
+export const plus0 = (value: number) => {
+  if (value > 10) {
+    return `${value}`;
+  }
+  return `0${value}`;
+};
+
+export const formatTimestamp = (() => {
+  let result: string = '';
+  return function format(time: number) {
+    if (time < 3600) {
+      result += `${plus0(Math.floor(time / 60))}:${plus0(time % 60)}`;
+    } else {
+      const hour = Math.floor(time / 3600);
+      result = `${plus0(hour)}:`;
+      format(time - 3600 * hour);
+    }
+    return result;
+  };
+})();

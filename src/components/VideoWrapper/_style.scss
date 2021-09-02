@@ -1,0 +1,33 @@
+$sudokuPrefixCls: 'vo-video-wrapper';
+.#{$sudokuPrefixCls} {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $vidoe-wrapper-margin-bottom;
+  background: #eee;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border-radius: 6px;
+  &.#{$sudokuPrefixCls}-horizontal {
+    width: 345px;
+    height: 194px;
+  }
+
+  &.#{$sudokuPrefixCls}-vertical {
+    width: 171px;
+    height: 228px;
+  }
+  .#{$sudokuPrefixCls}-play-button {
+    width: 44px;
+    height: 44px;
+  }
+  .#{$sudokuPrefixCls}-time {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    bottom: 8px;
+    color: #fff;
+    font-size: 12px;
+  }
+}
