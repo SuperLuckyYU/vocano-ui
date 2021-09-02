@@ -15,3 +15,4 @@ export { default as Toast } from './components/Toast';
 export { default as Skeleton } from './components/Skeleton';
 export { default as Sudoku } from './components/Sudoku';
 export { default as Swipe } from './components/Swipe';
+export { default as VideoWrapper } from './components/VideoWrapper';
