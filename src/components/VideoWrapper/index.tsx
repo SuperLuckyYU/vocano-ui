@@ -82,8 +82,8 @@ const VideoWrapper: FC<VideoWrapperProps> = props => {
     >
       <img
         className={classNames(componentName, 'play-button')}
-        alt='play button'
-        src='https://si1.go2yd.com/get-image/0tSYIf996Zt'
+        alt="play button"
+        src="https://si1.go2yd.com/get-image/0tSYIf996Zt"
       />
       <span className={classNames(componentName, 'time')}>{formatTime(time as string)}</span>
     </div>
