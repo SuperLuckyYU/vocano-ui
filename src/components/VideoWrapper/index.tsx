@@ -12,11 +12,11 @@ export interface VideoWrapperProps {
   /** 自定义样式 */
   style?: CSSProperties;
   /** 视频的宽度 */
-  width?: number | string;
+  width?: Size;
   /** 视频的高度 */
-  height?: number | string;
+  height?: Size;
   /** 视频的时间 */
-  time?: string | number;
+  time?: Size;
   /** 视频的poster预览图 */
   poster?: string;
   /** 视频或者doc地址 */
