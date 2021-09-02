@@ -1,8 +1,8 @@
 import React, { FC, CSSProperties } from 'react';
 import { classNames, formatTimestamp } from '../../utils';
 
-type size = string | number | undefined;
-type GetDirection = (width: size, height: size) => number;
+type Size = string | number | undefined;
+type GetDirection = (width: Size, height: Size) => number;
 type GetNumber = (value: string) => number;
 type VideoClickFn = (url: string | undefined) => void;
 type FormatTime = (time: string | number) => string;
