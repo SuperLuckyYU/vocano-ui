@@ -1,0 +1,46 @@
+$textWrapperPrefixCls: 'vo-text-wrapper';
+.#{$textWrapperPrefixCls} {
+  position: relative;
+  display: -webkit-box;
+  overflow: hidden;
+  color: #222;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  line-height: 26px;
+  -webkit-box-orient: vertical;
+
+  .#{$textWrapperPrefixCls}-more {
+    span {
+      color: #222;
+    }
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    height: 25px;
+    color: #657ba9;
+    font-weight: 400;
+    font-size: inherit;
+    font-size: 16px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    line-height: 1;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: -40px;
+      z-index: -1;
+      display: block;
+      height: 100%;
+      background: #fff;
+      content: '';
+      -webkit-mask-size: 100% 100%;
+      -webkit-mask-image: linear-gradient(270deg, #fff calc(100% - 40px), transparent 100%);
+    }
+  }
+}
