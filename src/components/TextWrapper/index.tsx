@@ -19,7 +19,7 @@ export interface TextWrapperProps {
   /** 显示更多button */
   showMoreBtn: boolean | string;
   /** 信息的url或者docid */
-  url: string;
+  url?: string;
   /** 文本的点击事件 */
   textClick?: TextClickFn;
 }
