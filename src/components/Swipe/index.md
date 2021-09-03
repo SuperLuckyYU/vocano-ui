@@ -22,4 +22,16 @@ import { Swipe } from 'vocano-ui';
 
 <code src="../../../example/Swipe/index.tsx" hideActions='["CSB"]'></code>
 
-<API src="./index.tsx" exports='["default"]'></API>
+<!-- <API src="./index.tsx" exports='["default"]'></API> -->
+## API
+
+| 属性名     | 描述         | 类型                                         | 默认值    |
+| ---------- | ------------ | -------------------------------------------- | --------- |
+| duration | 动画时长，单位为 ms | `number` 、 `string`                                 | `500`      |
+| initialSwipe | 初始位置索引值 | `number` 、 `string` | `0` |
+| width | 滑块宽度，单位为 px | `number` 、 `string` | `auto` |
+| height | 滑块高度，单位为 px | `number` 、 `string` | `auto` |
+| showIndicators | 是否显示指示器 | `boolean` | `true` |
+| touchable | 是否可以通过手势滑动 | `boolean` | `true` |
+| stopPropagation | 是否阻止滑动事件冒泡 | `boolean` | `true` |
+| indicatorColor | 指示器颜色 | `string` | `#1989fa` |

@@ -1,6 +1,5 @@
 import { FC } from 'react';
-import Swipe from './swipe';
-import { SwipeProps } from './index.d';
+import Swipe, { SwipeProps } from './swipe';
 import SwipeItem, { SwipeItemProps } from './swipeItem';
 
 export type ISwipeComponent = FC<SwipeProps> & {
@@ -10,4 +9,4 @@ const TransSwipe = Swipe as ISwipeComponent;
 
 TransSwipe.Item = SwipeItem;
 
-export default Swipe;
+export default TransSwipe;

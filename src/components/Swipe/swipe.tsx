@@ -7,13 +7,38 @@ import React, {
   useEffect,
   useRef,
   useCallback,
+  MouseEventHandler,
 } from 'react';
-import { classNames, preventDefault, clamp } from '../../utils';
-import { SwipeProps, SwipeState } from './index.d';
+import { classNames, preventDefault, clamp, uid } from '../../utils';
 import { SwipeItemProps } from './swipeItem';
 import useTouch from '../../hooks/useTouch';
 
 const componentName = 'swipe';
+
+export interface SwipeProps {
+  /** 动画时长，单位为 ms */
+  duration?: number | string;
+  /** 初始位置索引值 */
+  initialSwipe: number | string;
+  /** 滑块宽度，单位为 px */
+  width?: number | string;
+  /** 滑块高度，单位为 px */
+  height?: number | string;
+  /** 是否显示指示器 */
+  showIndicators?: boolean;
+  /** 是否可以通过手势滑动 */
+  touchable?: boolean;
+  /** 是否阻止滑动事件冒泡 */
+  stopPropagation?: boolean;
+  /** 指示器颜色 */
+  indicatorColor?: string;
+  /** 自定义类名 */
+  className?: string;
+  /** 自定义样式 */
+  style?: CSSProperties;
+  /** 点击时触发 */
+  onClick?: MouseEventHandler<HTMLDivElement>;
+}
 
 /**
  * 轮播，用于循环播放一组图片或内容
@@ -46,40 +71,39 @@ const Swipe: FC<SwipeProps> = props => {
 
   const root = useRef<HTMLDivElement>(null);
 
-  const [state, setState] = useState<SwipeState>({
-    rect: null,
-    width: 0,
-    height: 0,
-    offset: 0,
-    active: 0,
-    swiping: false,
-  });
+  const [currentActived, setCurrentActived] = useState(0);
+  const [rectWidth, setRectWidth] = useState(0);
+  // const [rectHeight, setRectHeight] = useState(0);
+  const [stateWidth, setStateWidth] = useState(0);
+  // const [stateHeight, setStateHeight] = useState(0);
+  const [offset, setOffset] = useState(0);
+  const [swiping, setSwiping] = useState(false);
 
   const touch = useTouch();
 
   const count = useMemo(() => React.Children.count(children), [children]);
 
-  const size = useMemo(() => state.width, [state.width]);
+  const size = useMemo(() => stateWidth, [stateWidth]);
 
   const delta = useMemo(() => touch.deltaX, [touch.deltaX]);
 
   const minOffset = useMemo(() => {
-    if (state.rect) return state.rect.width - size * count;
+    if (rectWidth) return rectWidth - size * count;
     return 0;
-  }, [state.rect, size, count]);
+  }, [rectWidth, size, count]);
 
   const maxCount = useMemo(() => Math.ceil(Math.abs(minOffset) / size), [minOffset, size]);
 
   const trackSize = useMemo(() => count * size, [count, size]);
 
-  const activeIndicator = useMemo(() => (state.active + count) % count, [state.active, count]);
+  const activeIndicator = useMemo(() => (currentActived + count) % count, [currentActived, count]);
 
   const isCorrectDirection = useMemo(() => touch.direction === 'horizontal', [touch.direction]);
 
   const trackStyle = useMemo(() => {
     const _style: CSSProperties = {
-      transitionDuration: `${state.swiping ? 0 : duration}ms`,
-      transform: `translateX(${state.offset}px)`,
+      transitionDuration: `${swiping ? 0 : duration}ms`,
+      transform: `translateX(${offset}px)`,
     };
 
     if (size) {
@@ -88,66 +112,55 @@ const Swipe: FC<SwipeProps> = props => {
     }
 
     return _style;
-  }, [state.swiping, duration, state.offset, size, trackSize, height]);
+  }, [swiping, duration, offset, size, trackSize, height]);
 
   const getTargetActive = (pace: number) => {
-    const { active } = state;
-
     if (pace) {
-      return clamp(active + pace, 0, maxCount);
+      return clamp(currentActived + pace, 0, maxCount);
     }
-    return active;
+    return currentActived;
   };
 
   const getTargetOffset = useCallback(
-    (targetActive: number, offset = 0) => {
+    (targetActive: number, _offset = 0) => {
       let currentPosition = targetActive * size;
       currentPosition = Math.min(currentPosition, -minOffset);
 
-      let targetOffset = offset - currentPosition;
+      let targetOffset = _offset - currentPosition;
       targetOffset = clamp(targetOffset, minOffset, 0);
 
       return targetOffset;
     },
-    [minOffset, size],
+    [size, minOffset],
   );
 
   const move = ({
     pace = 0,
-    offset = 0,
+    _offset = 0,
     emitChange,
   }: {
     pace?: number;
-    offset?: number;
+    _offset?: number;
     emitChange?: boolean;
   }) => {
     if (count <= 1) {
       return;
     }
-
-    const { active } = state;
     const targetActive = getTargetActive(pace);
-    const targetOffset = getTargetOffset(targetActive, offset);
+    const targetOffset = getTargetOffset(targetActive, _offset);
 
-    setState({
-      ...state,
-      active: targetActive,
-      offset: targetOffset,
-    });
-
-    if (emitChange && targetActive !== active) {
+    setOffset(targetOffset);
+    setCurrentActived(targetActive);
+    if (emitChange && targetActive !== currentActived) {
       // change Event
     }
   };
 
   const correctPosition = () => {
-    setState({
-      ...state,
-      swiping: true,
-    });
-    if (state.active <= -1) {
+    setSwiping(true);
+    if (currentActived <= -1) {
       move({ pace: count });
-    } else if (state.active >= count) {
+    } else if (currentActived >= count) {
       move({ pace: -count });
     }
   };
@@ -181,32 +194,31 @@ const Swipe: FC<SwipeProps> = props => {
   // };
 
   // initialize swipe position
-  const initialize = (active = +initialSwipe) => {
-    if (!root.current) {
-      return;
-    }
-    const rect = {
-      width: root.current.offsetWidth,
-      height: root.current.offsetHeight,
-    };
-    state.rect = rect;
-    state.width = +(width && width !== 'auto' ? width : rect.width);
-    state.height = +(height && height !== 'auto' ? height : rect.height);
+  const initialize = useCallback(
+    (active = +initialSwipe) => {
+      if (!root.current) {
+        return;
+      }
+      const _rectWidth = root.current.offsetWidth;
+      // const _rectHeight = root.current.offsetHeight;
+      setRectWidth(_rectWidth);
+      // setRectHeight(_rectHeight);
 
-    if (count) {
-      active = Math.min(count - 1, active);
-    }
+      const _width = +(width && width !== 'auto' ? width : _rectWidth);
+      // const _height = +(height && height !== 'auto' ? height : _rectHeight);
+      setStateWidth(_width);
+      // setStateHeight(_height);
 
-    setState({
-      ...state,
-      rect,
-      width: +(width && width !== 'auto' ? width : rect.width),
-      height: +(height && height !== 'auto' ? height : rect.height),
-      active,
-      swiping: true,
-      offset: getTargetOffset(active),
-    });
-  };
+      if (count) {
+        active = Math.min(count - 1, active);
+      }
+
+      setCurrentActived(active);
+      setSwiping(true);
+      setOffset(getTargetOffset(active));
+    },
+    [count, getTargetOffset, initialSwipe, width],
+  );
 
   let touchStartTime: number;
   const onTouchStart = (event: TouchEvent) => {
@@ -218,18 +230,18 @@ const Swipe: FC<SwipeProps> = props => {
   };
 
   const onTouchMove = (event: TouchEvent) => {
-    if (touchable && state.swiping) {
+    if (touchable && swiping) {
       touch.move(event);
 
       if (isCorrectDirection) {
         preventDefault(event, stopPropagation);
-        move({ offset: delta });
+        move({ _offset: delta });
       }
     }
   };
 
   const onTouchEnd = () => {
-    if (!touchable || !state.swiping) {
+    if (!touchable || !swiping) {
       return;
     }
 
@@ -239,9 +251,7 @@ const Swipe: FC<SwipeProps> = props => {
 
     if (shouldSwipe && isCorrectDirection) {
       let pace = 0;
-
       pace = -Math[delta > 0 ? 'ceil' : 'floor'](delta / size);
-
       move({
         pace,
         emitChange: true,
@@ -250,10 +260,7 @@ const Swipe: FC<SwipeProps> = props => {
       move({ pace: 0 });
     }
 
-    setState({
-      ...state,
-      swiping: false,
-    });
+    setSwiping(false);
   };
 
   const renderDot = (_: number, index: number) => {
@@ -263,8 +270,13 @@ const Swipe: FC<SwipeProps> = props => {
           backgroundColor: indicatorColor,
         }
       : undefined;
-
-    return <i style={_style} className={classNames(componentName, 'indicator', { active })} />;
+    return (
+      <i
+        style={_style}
+        key={uid()}
+        className={classNames(componentName, 'indicator', { active })}
+      />
+    );
   };
 
   const renderIndicator = () => {
@@ -296,7 +308,7 @@ const Swipe: FC<SwipeProps> = props => {
 
   useEffect(() => {
     initialize(+initialSwipe);
-  }, []);
+  }, [initialize, initialSwipe, size]);
 
   return (
     <div ref={root} className={classes} style={style}>

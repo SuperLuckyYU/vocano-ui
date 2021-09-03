@@ -36,10 +36,9 @@ $swipePrefixCls: 'vo-swipe';
     &:not(:last-child) {
       margin-right: 6px;
     }
-
-    &-active {
-      background-color: $blue;
-      opacity: 1;
-    }
+  }
+  .#{$swipePrefixCls}-active {
+    background-color: $blue;
+    opacity: 1;
   }
 }

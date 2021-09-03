@@ -18,6 +18,14 @@ type IimageClickProps = (iamges: string[], index: number) => void;
 
 const componentName = 'sudoku';
 
+/**
+ * 数独，用于九宫格布局
+ * ### 引用方法
+ *
+ * ~~~js
+ * import { Sudoku } from 'vocano-ui'
+ * ~~~
+ */
 const Sudoku: FC<SudokuProps> = props => {
   const { className, images, waterMark, imageClick, ...restProps } = props;
   const classes = classNames(componentName, {
