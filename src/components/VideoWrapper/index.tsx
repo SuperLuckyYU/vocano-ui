@@ -1,9 +1,8 @@
 import React, { FC, CSSProperties } from 'react';
-import { classNames, formatTimestamp } from '../../utils';
+import { classNames, formatTimestamp, getNumber } from '../../utils';
 
 type Size = string | number | undefined;
 type GetDirection = (width: Size, height: Size) => number;
-type GetNumber = (value: string) => number;
 type VideoClickFn = (url: string | undefined) => void;
 type FormatTime = (time: string | number) => string;
 export interface VideoWrapperProps {
@@ -29,13 +28,6 @@ const componentName = 'video-wrapper';
 
 const VideoWrapper: FC<VideoWrapperProps> = props => {
   const { className, width, height, time, poster, url, videoClick, ...restProps } = props;
-
-  const getNumber: GetNumber = value => {
-    const reg = /^\d+/gi;
-    const result = value.match(reg);
-    return result ? parseInt(result[0], 10) : 1;
-  };
-
   const getDirection: GetDirection = (picWidth, picHeight) => {
     const widthFormat = typeof picWidth === 'string' ? getNumber(picWidth) : width;
     const heightFormat = typeof picHeight === 'string' ? getNumber(picHeight) : width;

@@ -17,7 +17,7 @@ $textWrapperPrefixCls: 'vo-text-wrapper';
 
     position: absolute;
     right: 0;
-    bottom: 0;
+    bottom: -4px;
     z-index: 0;
     height: 25px;
     color: #657ba9;
@@ -29,6 +29,7 @@ $textWrapperPrefixCls: 'vo-text-wrapper';
     background: #fff;
     border: none;
     border-radius: 0;
+    cursor: pointer;
     &::before {
       position: absolute;
       top: 0;
