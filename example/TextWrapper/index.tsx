@@ -4,6 +4,8 @@ import { TextWrapper, VideoWrapper, Sudoku } from 'vocano-ui';
 
 export default () => (
     <div style={{padding:'15px'}}>
+        <TextWrapper showMoreBtn={true} row={1} bold content='这是一款非常优秀的移动UI组件库' />
+        <TextWrapper showMoreBtn={false} row={2} bold={200} content='当你真正使用起来时，你就能感受到她带给你如丝般顺滑的体验' />
         <TextWrapper textClick={(docid)=>{console.log('docid:', docid)}} url={'abcdefg'} showMoreBtn={true} row={1}  content='上朗上朗月高悬，地上花高悬，地上花灯万盏' />
         <VideoWrapper videoClick={(url)=>{console.log(url)}} url='play.mp4' poster='https://i1.go2yd.com/image.php?url=0XBLlpdAsV&type=jpeg_600x800' width='600' height='800' time='03:20'/>
         <TextWrapper showMoreBtn={true} row={4}  content='天上朗月高悬，地上花灯万盏,天上朗月高悬,地上花灯万盏,天上朗月高悬,地上花灯万盏,天上朗地上花灯万盏,天上朗月高悬地上花灯万盏,天上朗月高悬月高悬地上花灯万盏,天上朗月高悬,地上花灯万盏,天上朗月高悬地上花灯万盏,天上朗月高悬，地上花灯万盏' />

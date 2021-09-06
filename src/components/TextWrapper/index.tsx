@@ -20,6 +20,8 @@ export interface TextWrapperProps {
   showMoreBtn: boolean | string;
   /** 信息的url或者docid */
   url?: string;
+  /** 是否加粗 */
+  bold?: boolean | number;
   /** 文本的点击事件 */
   textClick?: TextClickFn;
 }
@@ -36,9 +38,11 @@ const TextWrapper: FC<TextWrapperProps> = props => {
     row,
     showMoreBtn,
     url,
+    bold,
     textClick,
     ...restProps
   } = props;
+
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [showMoreButton, setShowMoreButton] = useState(showMoreBtn);
 
@@ -50,7 +54,9 @@ const TextWrapper: FC<TextWrapperProps> = props => {
     return showMoreBtn;
   };
 
+  const boldVaule = typeof bold === 'number' ? bold : 'bold';
   const initStyle = {
+    fontWeight: bold ? boldVaule : 400,
     fontSize,
     lineHeight,
     WebkitLineClamp: showMoreButton === 'hide' ? 'initial' : row,
@@ -98,6 +104,9 @@ TextWrapper.defaultProps = {
   content: '',
   showMoreBtn: false,
   textClick: () => {},
+  bold: 400,
+  row: 3,
+  fontSize: 16,
 };
 
 export default TextWrapper;

@@ -3,10 +3,10 @@ nav:
   title: 组件
   path: /components
 group:
-  title: VideoWrapper 视频外壳
+  title: VideoWrapper 视频容器
 ---
 
-# VideoWrapper 视频外壳
+# VideoWrapper 视频容器
 ## 介绍
 
 > 信息流中视频的外壳
