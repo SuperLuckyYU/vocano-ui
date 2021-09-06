@@ -1,5 +1,7 @@
 import { TouchEvent } from 'react';
 
+type GetNumber = (value: string) => number;
+
 export function isObject(value: unknown): Boolean {
   return Object.prototype.toString.call(value) === '[object Object]';
 }
@@ -152,3 +154,12 @@ export const formatTimestamp = (() => {
     return result;
   };
 })();
+
+export const getNumber: GetNumber = value => {
+  if (typeof value === 'number') {
+    return value;
+  }
+  const reg = /^\d+/gi;
+  const result = value.match(reg);
+  return result ? parseInt(result[0], 10) : 1;
+};

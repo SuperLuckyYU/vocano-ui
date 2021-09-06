@@ -1,5 +1,5 @@
-import React, { FC, CSSProperties, useState } from 'react';
-import { classNames } from '../../utils';
+import React, { FC, CSSProperties, useState, useRef, useEffect } from 'react';
+import { classNames, getNumber } from '../../utils';
 
 type Size = string | number | undefined;
 type TextClickFn = (url: string | undefined) => void;
@@ -39,7 +39,17 @@ const TextWrapper: FC<TextWrapperProps> = props => {
     textClick,
     ...restProps
   } = props;
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const [showMoreButton, setShowMoreButton] = useState(showMoreBtn);
+
+  const isShowMoreButton = (width: number) => {
+    const TextTotalWidth = (content as string).length * getNumber((fontSize as any) || 16);
+    if (TextTotalWidth < width * parseInt(row as string, 10)) {
+      return 'hide';
+    }
+    return showMoreBtn;
+  };
+
   const initStyle = {
     fontSize,
     lineHeight,
@@ -58,8 +68,15 @@ const TextWrapper: FC<TextWrapperProps> = props => {
     customClassName: className,
   });
 
+  useEffect(() => {
+    if (wrapperRef.current) {
+      const { width } = wrapperRef.current.getBoundingClientRect();
+      setShowMoreButton(isShowMoreButton(width));
+    }
+  }, []);
   return (
     <div
+      ref={wrapperRef}
       className={classes}
       {...restProps}
       style={{ ...initStyle, ...(style as any) }}
