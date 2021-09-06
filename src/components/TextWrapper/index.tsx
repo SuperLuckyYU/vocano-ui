@@ -54,9 +54,9 @@ const TextWrapper: FC<TextWrapperProps> = props => {
     return showMoreBtn;
   };
 
-  const boldVaule = typeof bold === 'number' ? bold : 'bold';
+  const boldValue = typeof bold === 'number' ? bold : 'bold';
   const initStyle = {
-    fontWeight: bold ? boldVaule : 400,
+    fontWeight: bold ? boldValue : 400,
     fontSize,
     lineHeight,
     WebkitLineClamp: showMoreButton === 'hide' ? 'initial' : row,
