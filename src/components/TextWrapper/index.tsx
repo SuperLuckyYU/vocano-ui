@@ -34,7 +34,6 @@ const TextWrapper: FC<TextWrapperProps> = props => {
     style,
     content,
     fontSize,
-    lineHeight,
     row,
     showMoreBtn,
     url,
@@ -55,13 +54,19 @@ const TextWrapper: FC<TextWrapperProps> = props => {
   };
 
   const boldValue = typeof bold === 'number' ? bold : 'bold';
+  const computedFont = getNumber(fontSize as any);
+  const computedVule =  `${computedFont * 1.625 }px`;
+  const computedLineHeight = computedFont > 20 ? computedVule : 'initial';
   const initStyle = {
     fontWeight: bold ? boldValue : 400,
     fontSize,
-    lineHeight,
+    lineHeight: computedLineHeight,
     WebkitLineClamp: showMoreButton === 'hide' ? 'initial' : row,
   };
-
+  const showMoreBtnStyle = {
+    fontSize,
+    height: fontSize ? computedVule : 'initial',
+  };
   const showAllEvent = () => {
     setShowMoreButton('hide');
   };
@@ -92,7 +97,11 @@ const TextWrapper: FC<TextWrapperProps> = props => {
     >
       {content}
       {showMoreButton && showMoreButton !== 'hide' && row && (
-        <div className={classNames(componentName, 'more')} onClick={showAllEvent}>
+        <div
+          style={showMoreBtnStyle}
+          className={classNames(componentName, 'more')}
+          onClick={showAllEvent}
+        >
           <span>...</span> 全文
         </div>
       )}
