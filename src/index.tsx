@@ -17,3 +17,4 @@ export { default as Sudoku } from './components/Sudoku';
 export { default as Swipe } from './components/Swipe';
 export { default as VideoWrapper } from './components/VideoWrapper';
 export { default as TextWrapper } from './components/TextWrapper';
+export { default as ImagePreview } from './components/ImagePreview';

@@ -7,9 +7,8 @@ import React, {
   useEffect,
   useRef,
   useCallback,
-  MouseEventHandler,
 } from 'react';
-import { classNames, preventDefault, clamp, uid } from '../../utils';
+import { classNames, preventDefault, clamp, uid, isFunction } from '../../utils';
 import { SwipeItemProps } from './swipeItem';
 import useTouch from '../../hooks/useTouch';
 
@@ -37,7 +36,9 @@ export interface SwipeProps {
   /** 自定义样式 */
   style?: CSSProperties;
   /** 点击时触发 */
-  onClick?: MouseEventHandler<HTMLDivElement>;
+  handleClickCallback?(): void;
+  /** 切换当前图片时触发 */
+  onChange?: (index: number) => void;
 }
 
 /**
@@ -51,7 +52,6 @@ export interface SwipeProps {
 const Swipe: FC<SwipeProps> = props => {
   const {
     duration,
-    initialSwipe,
     width,
     height,
     showIndicators,
@@ -61,7 +61,10 @@ const Swipe: FC<SwipeProps> = props => {
     className,
     style,
     children,
+    handleClickCallback,
+    onChange,
   } = props;
+  const initialSwipe = Number(props.initialSwipe);
 
   const classes = classNames(componentName, '', {
     customClassName: className,
@@ -71,7 +74,7 @@ const Swipe: FC<SwipeProps> = props => {
 
   const root = useRef<HTMLDivElement>(null);
 
-  const [currentActived, setCurrentActived] = useState(0);
+  const [currentActived, setCurrentActived] = useState(initialSwipe);
   const [rectWidth, setRectWidth] = useState(0);
   // const [rectHeight, setRectHeight] = useState(0);
   const [stateWidth, setStateWidth] = useState(0);
@@ -165,34 +168,6 @@ const Swipe: FC<SwipeProps> = props => {
     }
   };
 
-  // swipe to prev item
-  // const prev = () => {
-  //   correctPosition();
-  //   touch.reset();
-
-  //   doubleRaf(() => {
-  //     state.swiping = false;
-  //     move({
-  //       pace: -1,
-  //       emitChange: true,
-  //     });
-  //   });
-  // };
-
-  // swipe to next item
-  // const next = () => {
-  //   correctPosition();
-  //   touch.reset();
-
-  //   doubleRaf(() => {
-  //     state.swiping = false;
-  //     move({
-  //       pace: 1,
-  //       emitChange: true,
-  //     });
-  //   });
-  // };
-
   // initialize swipe position
   const initialize = useCallback(
     (active = +initialSwipe) => {
@@ -220,19 +195,19 @@ const Swipe: FC<SwipeProps> = props => {
     [count, getTargetOffset, initialSwipe, width],
   );
 
-  let touchStartTime: number;
+  const [touchStartTime, setTouchStartTime] = useState(0);
   const onTouchStart = (event: TouchEvent) => {
     if (!touchable) return;
     touch.start(event);
-    touchStartTime = Date.now();
 
+    setTouchStartTime(Date.now());
     correctPosition();
+    preventDefault(event, stopPropagation);
   };
 
   const onTouchMove = (event: TouchEvent) => {
     if (touchable && swiping) {
       touch.move(event);
-
       if (isCorrectDirection) {
         preventDefault(event, stopPropagation);
         move({ _offset: delta });
@@ -240,12 +215,13 @@ const Swipe: FC<SwipeProps> = props => {
     }
   };
 
-  const onTouchEnd = () => {
+  const onTouchEnd = (event: TouchEvent) => {
     if (!touchable || !swiping) {
       return;
     }
 
     const _duration = Date.now() - touchStartTime;
+
     const speed = delta / _duration;
     const shouldSwipe = Math.abs(speed) > 0.25 || Math.abs(delta) > size / 2;
 
@@ -261,6 +237,11 @@ const Swipe: FC<SwipeProps> = props => {
     }
 
     setSwiping(false);
+    preventDefault(event, stopPropagation);
+    // Determined as a click event
+    if (delta === 0 && handleClickCallback && isFunction(handleClickCallback)) {
+      handleClickCallback();
+    }
   };
 
   const renderDot = (_: number, index: number) => {
@@ -308,7 +289,13 @@ const Swipe: FC<SwipeProps> = props => {
 
   useEffect(() => {
     initialize(+initialSwipe);
-  }, [initialize, initialSwipe, size]);
+  }, [initialize, size, root.current?.offsetWidth, initialSwipe]);
+
+  useEffect(() => {
+    if (onChange && isFunction(onChange)) {
+      onChange(activeIndicator);
+    }
+  }, [onChange, activeIndicator]);
 
   return (
     <div ref={root} className={classes} style={style}>

@@ -1,0 +1,38 @@
+$imagePreviewPrefixCls: 'vo-image-preview';
+
+.#{$imagePreviewPrefixCls}-popup {
+  display: block;
+  transform: none;
+  .#{$imagePreviewPrefixCls}-index {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    color: #fff;
+    font-size: 14px;
+    line-height: 20px;
+    text-shadow: 0 1px 1px #323233;
+    transform: translate(-50%, 0);
+  }
+}
+.#{$imagePreviewPrefixCls}-swipe {
+  height: 100%;
+  .#{$imagePreviewPrefixCls}-swipe-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    .#{$imagePreviewPrefixCls}-image {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      transition-property: transform;
+      .#{$imagePreviewPrefixCls}-img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        -webkit-user-drag: none;
+      }
+    }
+  }
+}

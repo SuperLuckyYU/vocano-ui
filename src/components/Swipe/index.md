@@ -35,3 +35,18 @@ import { Swipe } from 'vocano-ui';
 | touchable | 是否可以通过手势滑动 | `boolean` | `true` |
 | stopPropagation | 是否阻止滑动事件冒泡 | `boolean` | `true` |
 | indicatorColor | 指示器颜色 | `string` | `#1989fa` |
+| className | 自定义类名 | `string` | -- |
+| style | 自定义样式 | `CSSProperties` | -- |
+
+## Swipe Events
+
+| 事件     | 说明         | 回调参数    |
+| ---------- | ------------ | --------- |
+| onChange | 切换当前图片时触发 | index: 当前图片的索引 |
+| handleClickCallback | 点击时触发 | -- |
+
+## SwipeItem Events
+
+| 事件     | 说明         | 回调参数    |
+| ---------- | ------------ | --------- |
+| onClick | 点击时触发 | `event: Event` |

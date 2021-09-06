@@ -4,7 +4,7 @@ import { Swipe } from 'vocano-ui';
 import './index.css';
 
 export default () => (
-  <Swipe className="my-swipe" initialSwipe={2} indicatorColor="white">
+  <Swipe className="my-swipe" initialSwipe={0} indicatorColor="white">
     <Swipe.Item>1</Swipe.Item>
     <Swipe.Item>2</Swipe.Item>
     <Swipe.Item>3</Swipe.Item>

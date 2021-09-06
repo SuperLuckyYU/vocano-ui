@@ -40,7 +40,7 @@ const Wrapper: FC<WrapperProps> = ({ children, visible, animation, timeout }) =>
       timeout={timeout} // 动画执行1秒
       classNames={classes}
     >
-      {children}
+      <>{children}</>
     </CSSTransition>
   );
 };
@@ -55,8 +55,10 @@ const Popup: FC<PopupProps> = ({
 
   animation,
   timeout,
+
+  className,
 }) => {
-  const popupEl = useRef(null);
+  const popupEl = useRef<HTMLDivElement>(null);
   const classes = classNames(componentName, {
     hide: true,
     popup: true,
@@ -75,6 +77,7 @@ const Popup: FC<PopupProps> = ({
     const statusClasses = classNames(componentName, {
       popup: true,
       hide: !visible,
+      customClassName: className,
     });
     if (popupEl && popupEl.current) {
       const current = popupEl.current || { className: '' };
