@@ -304,8 +304,9 @@ $skeleton-title-margin-bottom: 20 * $hd !default;
 $skeleton-row-border-radius: 4 * $hd !default;
 
 // Sudoku
-$sudoku-image-space: 0.5%;
-$sudoku-image-width-percentage: 33%;
-
+$sudoku-image-space: 3px;
+$sudoku-image-width-percentage: calc((100% - 6px) / 3);
+$sudoku-image-width-percentage-4: calc((100% - 3px) / 2);
+$sudoku-border-radius: 4px;
 // VideoWrapper
 $vidoe-wrapper-margin-bottom: 10px;

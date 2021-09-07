@@ -1,5 +1,5 @@
 import React, { FC, CSSProperties } from 'react';
-import { classNames, uid } from '../../utils';
+import { classNames, uid, getNumber } from '../../utils';
 
 type ImageFn = (images: string[], index: number) => void;
 export interface SudokuProps {
@@ -28,16 +28,27 @@ const componentName = 'sudoku';
  */
 const Sudoku: FC<SudokuProps> = props => {
   const { className, images, waterMark, imageClick, ...restProps } = props;
-  const classes = classNames(componentName, {
+  const getImagesNum = (imagesValue: number | string | string[]) => {
+    if (Array.isArray(imagesValue)) {
+      return imagesValue.length;
+    }
+    if (typeof imagesValue === 'string') {
+      return getNumber(imagesValue);
+    }
+    return imagesValue;
+  };
+
+  const classes = classNames(componentName, `images-wrapper-${getImagesNum(images as any)}`, {
     'images-wrapper': true,
-    'images-four': images === 4,
-    'image-one': images === 1,
+    'images-four': getImagesNum(images as any) === 4,
+    'image-one': getImagesNum(images as any) === 1,
     customClassName: className,
   });
 
   const imageItemClick: IimageClickProps = (album, index) => {
     (imageClick as ImageFn)(album, index);
   };
+
   const renderImages = () => {
     if (!images) return null;
     const imagesFormat = Array.isArray(images)
@@ -70,7 +81,6 @@ const Sudoku: FC<SudokuProps> = props => {
     return (
       <div className={classes} {...restProps}>
         {imageList}
-        <div className={classNames(componentName, 'image-placeholder')} />
       </div>
     );
   };
