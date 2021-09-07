@@ -55,7 +55,7 @@ const TextWrapper: FC<TextWrapperProps> = props => {
 
   const boldValue = typeof bold === 'number' ? bold : 'bold';
   const computedFont = getNumber(fontSize as any);
-  const computedHeight =  `${computedFont * fontTimes }px`;
+  const computedHeight = `${computedFont * fontTimes}px`;
   const computedLineHeight = computedFont > 20 ? computedHeight : 'initial';
   const initStyle = {
     fontWeight: bold ? boldValue : 400,
