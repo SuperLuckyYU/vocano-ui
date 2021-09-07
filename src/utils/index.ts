@@ -163,3 +163,22 @@ export const getNumber: GetNumber = value => {
   const result = value.match(reg);
   return result ? parseInt(result[0], 10) : 1;
 };
+
+export const round = (number: number, precision: number = 0) => {
+  const func = Math.round;
+  precision = precision >= 0 ? Math.min(precision, 292) : Math.max(precision, -292);
+  if (precision) {
+    let pair = `${number}e`.split('e')
+    const num = `${pair[0]}e${+pair[1] + precision}`
+    const value = func(+num)
+
+    pair = `${value}e`.split('e')
+    return +`${pair[0]}e${+pair[1] - precision}`
+  }
+  return func(number)
+}
+
+export const pxToVw = (pxValue: number) => {
+  const {clientWidth} = document.body;
+  return round(pxValue / (clientWidth / 100), 5)
+};
