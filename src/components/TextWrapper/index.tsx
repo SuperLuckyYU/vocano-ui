@@ -20,25 +20,28 @@ export interface TextWrapperProps {
   showMoreBtn: boolean | string;
   /** 信息的url或者docid */
   url?: string;
+  /** 是否加粗 */
+  bold?: boolean | number;
   /** 文本的点击事件 */
   textClick?: TextClickFn;
 }
 
 const componentName = 'text-wrapper';
-
+const fontTimes = 1.625;
 const TextWrapper: FC<TextWrapperProps> = props => {
   const {
     className,
     style,
     content,
     fontSize,
-    lineHeight,
     row,
     showMoreBtn,
     url,
+    bold,
     textClick,
     ...restProps
   } = props;
+
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [showMoreButton, setShowMoreButton] = useState(showMoreBtn);
 
@@ -50,12 +53,20 @@ const TextWrapper: FC<TextWrapperProps> = props => {
     return showMoreBtn;
   };
 
+  const boldValue = typeof bold === 'number' ? bold : 'bold';
+  const computedFont = getNumber(fontSize as any);
+  const computedHeight =  `${computedFont * fontTimes }px`;
+  const computedLineHeight = computedFont > 20 ? computedHeight : 'initial';
   const initStyle = {
+    fontWeight: bold ? boldValue : 400,
     fontSize,
-    lineHeight,
+    lineHeight: computedLineHeight,
     WebkitLineClamp: showMoreButton === 'hide' ? 'initial' : row,
   };
-
+  const showMoreBtnStyle = {
+    fontSize,
+    height: fontSize ? computedHeight : 'initial',
+  };
   const showAllEvent = () => {
     setShowMoreButton('hide');
   };
@@ -86,7 +97,11 @@ const TextWrapper: FC<TextWrapperProps> = props => {
     >
       {content}
       {showMoreButton && showMoreButton !== 'hide' && row && (
-        <div className={classNames(componentName, 'more')} onClick={showAllEvent}>
+        <div
+          style={showMoreBtnStyle}
+          className={classNames(componentName, 'more')}
+          onClick={showAllEvent}
+        >
           <span>...</span> 全文
         </div>
       )}
@@ -98,6 +113,9 @@ TextWrapper.defaultProps = {
   content: '',
   showMoreBtn: false,
   textClick: () => {},
+  bold: 400,
+  row: 3,
+  fontSize: 16,
 };
 
 export default TextWrapper;
