@@ -3,13 +3,13 @@ nav:
   title: 组件
   path: /components
 group:
-  title: TextWrapper 文本外壳
+  title: TextWrapper 文本容器
 ---
 
-# TextWrapper 文本外壳
+# TextWrapper 文本容器
 ## 介绍
 
-> 信息流中视频的外壳
+> 信息流中的文本容器，可以配置字体大小，显示的行数，是否显示展开全文等属性。
 >
 ## 引入
 
