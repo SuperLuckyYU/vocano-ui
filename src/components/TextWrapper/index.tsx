@@ -1,19 +1,18 @@
-import React, { FC, CSSProperties, useState, useRef, useEffect } from 'react';
-import { classNames, getNumber } from '../../utils';
+import React, { FC, useState, useRef, useEffect, useCallback, CSSProperties } from 'react';
+import { Property } from 'csstype';
+import { classNames, getNumber, pxToVw } from '../../utils';
 
-type Size = string | number | undefined;
-type TextClickFn = (url: string | undefined) => void;
+type TextClickFn = (url?: string) => void;
+type unitType = 'vw' | 'px';
 export interface TextWrapperProps {
   /** 自定义类名 */
   className?: string;
-  /** 自定义样式 */
-  style?: CSSProperties;
   /** 文本内容 */
-  content?: string;
+  content: string;
   /** 字体大小 */
-  fontSize?: Size;
+  fontSize?: string | number;
   /** 行高 */
-  lineHeight?: Size;
+  lineHeight?: string | number;
   /** 显示行数 */
   row?: number | string;
   /** 显示更多button */
@@ -22,6 +21,8 @@ export interface TextWrapperProps {
   url?: string;
   /** 是否加粗 */
   bold?: boolean | number;
+  /** 单位类型 */
+  unit?: unitType;
   /** 文本的点击事件 */
   textClick?: TextClickFn;
 }
@@ -31,13 +32,13 @@ const fontTimes = 1.625;
 const TextWrapper: FC<TextWrapperProps> = props => {
   const {
     className,
-    style,
     content,
     fontSize,
-    row,
+    row = 3,
     showMoreBtn,
     url,
     bold,
+    unit,
     textClick,
     ...restProps
   } = props;
@@ -45,28 +46,49 @@ const TextWrapper: FC<TextWrapperProps> = props => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [showMoreButton, setShowMoreButton] = useState(showMoreBtn);
 
-  const isShowMoreButton = (width: number) => {
-    const TextTotalWidth = (content as string).length * getNumber((fontSize as any) || 16);
-    if (TextTotalWidth < width * parseInt(row as string, 10)) {
-      return 'hide';
-    }
-    return showMoreBtn;
+  const boldValue = typeof bold === 'number' ? bold : 'bold';
+
+  const _fontSize = typeof fontSize === 'number' ? fontSize : getNumber(fontSize as string);
+  const computedfontSize = unit === 'px' ? fontSize : `${pxToVw(_fontSize)}vw`;
+
+  const computedHeight =
+    unit === 'px' ? `${_fontSize * fontTimes}px` : `${pxToVw(_fontSize * fontTimes)}vw`;
+  const computedLineHeight = _fontSize > 20 ? computedHeight : 'initial';
+
+  const initStyle: CSSProperties = {
+    fontWeight: boldValue,
+    fontSize: computedfontSize,
+    lineHeight: computedLineHeight,
+    WebkitLineClamp: (showMoreButton === 'hide' ? 'initial' : row) as Property.WebkitLineClamp,
   };
 
-  const boldValue = typeof bold === 'number' ? bold : 'bold';
-  const computedFont = getNumber(fontSize as any);
-  const computedHeight = `${computedFont * fontTimes}px`;
-  const computedLineHeight = computedFont > 20 ? computedHeight : 'initial';
-  const initStyle = {
-    fontWeight: bold ? boldValue : 400,
-    fontSize,
-    lineHeight: computedLineHeight,
-    WebkitLineClamp: showMoreButton === 'hide' ? 'initial' : row,
-  };
   const showMoreBtnStyle = {
-    fontSize,
-    height: fontSize ? computedHeight : 'initial',
+    fontSize: computedfontSize,
+    height: computedHeight,
   };
+
+  const isShowMoreButton = useCallback(
+    (width: number) => {
+      let totalSize = 0;
+      if (unit === 'px') {
+        totalSize = content.length * _fontSize;
+        if (totalSize < width * parseInt(row as string, 10)) {
+          return 'hide';
+        }
+      }
+
+      if (unit === 'vw') {
+        totalSize = content.length * pxToVw(_fontSize);
+        if (totalSize < pxToVw(width) * parseInt(row as string, 10)) {
+          return 'hide';
+        }
+      }
+
+      return showMoreBtn;
+    },
+    [_fontSize, content.length, row, showMoreBtn, unit],
+  );
+
   const showAllEvent = () => {
     setShowMoreButton('hide');
   };
@@ -75,7 +97,7 @@ const TextWrapper: FC<TextWrapperProps> = props => {
     (textClick as TextClickFn)(docid);
   };
 
-  const classes = classNames(componentName, componentName, {
+  const classes = classNames(componentName, '', {
     customClassName: className,
   });
 
@@ -84,13 +106,14 @@ const TextWrapper: FC<TextWrapperProps> = props => {
       const { width } = wrapperRef.current.getBoundingClientRect();
       setShowMoreButton(isShowMoreButton(width));
     }
-  }, []);
+  }, [isShowMoreButton]);
+
   return (
     <div
       ref={wrapperRef}
       className={classes}
       {...restProps}
-      style={{ ...initStyle, ...(style as any) }}
+      style={{ ...initStyle }}
       onClick={() => {
         textClickEVent(url);
       }}
@@ -116,6 +139,7 @@ TextWrapper.defaultProps = {
   bold: 400,
   row: 3,
   fontSize: 16,
+  unit: 'px',
 };
 
 export default TextWrapper;
