@@ -10,7 +10,7 @@ $skeletonPrefixCls: 'vo-skeleton';
 .#{$skeletonPrefixCls}-row,
 .#{$skeletonPrefixCls}-title {
   min-height: $skeleton-row-height;
-  margin-top: $skeleton-row-margin-top;
+  margin-bottom: $skeleton-row-margin-top;
   background: linear-gradient(
     100deg,
     rgba(255, 255, 255, 0) 40%,
