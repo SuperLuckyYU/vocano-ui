@@ -11,8 +11,6 @@ export interface TextWrapperProps {
   content: string;
   /** 字体大小 */
   fontSize?: string | number;
-  /** 行高 */
-  lineHeight?: string | number;
   /** 显示行数 */
   row?: number | string;
   /** 显示更多button */
