@@ -27,7 +27,6 @@ const imagePreview = (
 ) => {
   const options = Array.isArray(images) ? { images, startPosition } : images;
   const imagePreviewEl = document.createElement('div');
-  document.body.appendChild(imagePreviewEl);
   // bad case: compatible doc mobile layout
   const isDocBrowser = document.querySelector('.__dumi-default-mobile-demo-layout');
   if (!isDocBrowser) {
@@ -35,6 +34,8 @@ const imagePreview = (
   } else {
     isDocBrowser.appendChild(imagePreviewEl);
   }
+
+  document.body.setAttribute('style', 'position: fix');
 
   const ImagePreview: FC<InternalProps> = props => {
     const popupClasses = classNames(componentName, 'popup');
@@ -55,10 +56,11 @@ const imagePreview = (
     const handleClick = () => {
       setVisible(false);
       if (!isDocBrowser) {
-        document.body.appendChild(imagePreviewEl);
+        document.body.removeChild(imagePreviewEl);
       } else {
         isDocBrowser.removeChild(imagePreviewEl);
       }
+      document.body.removeAttribute('style');
     };
 
     const handleChange = (index: number) => {
