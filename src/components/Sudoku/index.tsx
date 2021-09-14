@@ -11,6 +11,8 @@ export interface SudokuProps {
   images?: string | number | string[];
   /** 九宫格图片水印 */
   waterMark?: string;
+  /** 是否全部展示 */
+  showAll?: boolean;
   /** 图片的点击事件 */
   imageClick?: ImageFn;
 }
@@ -27,7 +29,7 @@ const componentName = 'sudoku';
  * ~~~
  */
 const Sudoku: FC<SudokuProps> = props => {
-  const { className, images, waterMark, imageClick, ...restProps } = props;
+  const { className, images, waterMark, showAll, imageClick, ...restProps } = props;
   const getImagesNum = (imagesValue: number | string | string[]) => {
     if (Array.isArray(imagesValue)) {
       return imagesValue.length;
@@ -49,31 +51,45 @@ const Sudoku: FC<SudokuProps> = props => {
     (imageClick as ImageFn)(album, index);
   };
 
+  const imageDisplay = (imagesAll: string[], item: any, index: number) => {
+    if (imagesAll.length > 9 && index === 8 && !showAll) {
+      return (
+        <div className={classNames(componentName, 'image-item-more')}>
+          <div className={classNames(componentName, 'image-item-more-mask')} />
+          <div className={classNames(componentName, 'image-item-more-number')}>
+            +{imagesAll.length - 9}
+          </div>
+          <img className={classNames(componentName, 'image-item')} alt={item} src={item} />
+        </div>
+      );
+    }
+    return <img className={classNames(componentName, 'image-item')} alt={item} src={item} />;
+  };
   const renderImages = () => {
     if (!images) return null;
     const imagesFormat = Array.isArray(images)
       ? images
       : Array(typeof images === 'string' ? parseInt(images, 10) : images).fill('');
-    const imageList = imagesFormat.map((item: string, index: number) => (
+    const imagesShowArr =
+      !showAll && imagesFormat.length > 9 ? imagesFormat.slice(0, 9) : imagesFormat;
+    const imageList = imagesShowArr.map((item: string, index: number) => (
       <div
         key={uid()}
         className={classNames(componentName, 'image-outer')}
         onClick={() => {
-          imageItemClick(imagesFormat, index);
+          imageItemClick(imagesShowArr, index);
         }}
       >
         <div className={classNames(componentName, 'image')}>
-          {item ? (
-            <img className={classNames(componentName, 'image-item')} alt={item} src={item} />
-          ) : (
-            waterMark && (
-              <img
-                className={classNames(componentName, 'image-watermark')}
-                alt={waterMark}
-                src={waterMark}
-              />
-            )
-          )}
+          {item
+            ? imageDisplay(imagesFormat, item, index)
+            : waterMark && (
+                <img
+                  className={classNames(componentName, 'image-watermark')}
+                  alt={waterMark}
+                  src={waterMark}
+                />
+              )}
         </div>
       </div>
     ));
@@ -84,13 +100,13 @@ const Sudoku: FC<SudokuProps> = props => {
       </div>
     );
   };
-
   return <>{renderImages()}</>;
 };
 
 Sudoku.defaultProps = {
   images: 0,
   waterMark: '',
+  showAll: false,
   imageClick: () => {},
 };
 

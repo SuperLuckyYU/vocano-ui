@@ -16,11 +16,15 @@ export default () => (
         <Sudoku images={fillImage(3)}  imageClick={(iamges,index) => console.log(iamges,index)}  waterMark={waterMark} />
         <Sudoku images={4} waterMark={waterMark}/>
         <Sudoku images={fillImage(5)} waterMark={waterMark}/>
-        <div style={{padding: '30px'}}>
+        <div style={{padding: '20px'}}>
             <Sudoku images={fillImage(6)} waterMark={waterMark}/>
         </div>
         <Sudoku images={fillImage(7)} waterMark={waterMark}/>
         <Sudoku images={fillImage(8)} waterMark={waterMark}/>
         <Sudoku images={fillImage(9)} waterMark={waterMark}/>
+        <Sudoku images={fillImage(11)} waterMark={waterMark}/>
+        <Sudoku images={fillImage(16)} waterMark={waterMark}/>
+        <Sudoku images={fillImage(13)} showAll={true} waterMark={waterMark}/>
+
     </div>
   );
