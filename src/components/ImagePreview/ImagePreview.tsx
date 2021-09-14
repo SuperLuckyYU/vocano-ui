@@ -35,7 +35,7 @@ const imagePreview = (
     isDocBrowser.appendChild(imagePreviewEl);
   }
 
-  document.body.setAttribute('style', 'position: fix');
+  document.body.setAttribute('style', 'position: fixed');
 
   const ImagePreview: FC<InternalProps> = props => {
     const popupClasses = classNames(componentName, 'popup');
