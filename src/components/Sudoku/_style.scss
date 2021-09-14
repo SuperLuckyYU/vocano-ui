@@ -24,13 +24,26 @@ $sudokuPrefixCls: 'vo-sudoku';
       border-bottom-right-radius: $sudoku-border-radius;
     }
   }
-
   &.#{$sudokuPrefixCls}-image-one {
-    .#{$sudokuPrefixCls}-image-outer {
-      width: 66.6% !important;
-      height: 163px;
-      .#{$sudokuPrefixCls}-image-watermark {
-        width: 40%;
+    .#{$sudokuPrefixCls}-image-watermark {
+      width: 40% !important;
+    }
+    &.#{$sudokuPrefixCls}-images-wrapper-horizontal {
+      .#{$sudokuPrefixCls}-image-outer {
+        width: 228px;
+        height: 171px;
+      }
+    }
+    &.#{$sudokuPrefixCls}-images-wrapper-square {
+      .#{$sudokuPrefixCls}-image-outer {
+        width: 228px;
+        height: 228px;
+      }
+    }
+    &.#{$sudokuPrefixCls}-images-wrapper-vertical {
+      .#{$sudokuPrefixCls}-image-outer {
+        width: 171px;
+        height: 274px;
       }
     }
   }
@@ -148,11 +161,11 @@ $sudokuPrefixCls: 'vo-sudoku';
 .#{$sudokuPrefixCls}-image {
   min-height: $skeleton-row-height;
   background: linear-gradient(
-      100deg,
-      rgba(255, 255, 255, 0) 40%,
-      rgba(255, 255, 255, 0.5) 50%,
-      rgba(255, 255, 255, 0) 60%
-    )
+    100deg,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 60%
+  )
     $loading-grey;
   background-color: $loading-grey;
   background-position-x: 180%;
