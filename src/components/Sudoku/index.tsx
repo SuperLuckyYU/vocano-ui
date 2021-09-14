@@ -13,12 +13,21 @@ export interface SudokuProps {
   waterMark?: string;
   /** 是否全部展示 */
   showAll?: boolean;
+  /** 单图时的显示方向 */
+  ratio?: number;
   /** 图片的点击事件 */
   imageClick?: ImageFn;
 }
 type IimageClickProps = (iamges: string[], index: number) => void;
 
 const componentName = 'sudoku';
+
+const showRatio = (ratio: number) => {
+  if (!ratio) return '';
+  if (ratio > 1) return 'horizontal';
+  if (ratio < 1) return 'vertical';
+  return 'square';
+};
 
 /**
  * 数独，用于九宫格布局
@@ -29,7 +38,7 @@ const componentName = 'sudoku';
  * ~~~
  */
 const Sudoku: FC<SudokuProps> = props => {
-  const { className, images, waterMark, showAll, imageClick, ...restProps } = props;
+  const { className, images, waterMark, showAll, ratio, imageClick, ...restProps } = props;
   const getImagesNum = (imagesValue: number | string | string[]) => {
     if (Array.isArray(imagesValue)) {
       return imagesValue.length;
@@ -40,12 +49,17 @@ const Sudoku: FC<SudokuProps> = props => {
     return imagesValue;
   };
 
-  const classes = classNames(componentName, `images-wrapper-${getImagesNum(images as any)}`, {
-    'images-wrapper': true,
-    'images-four': getImagesNum(images as any) === 4,
-    'image-one': getImagesNum(images as any) === 1,
-    customClassName: className,
-  });
+  const classes = classNames(
+    componentName,
+    `images-wrapper-${getImagesNum(images as any)}`,
+    `images-wrapper-${showRatio(ratio as number)}`,
+    {
+      'images-wrapper': true,
+      'images-four': getImagesNum(images as any) === 4,
+      'image-one': getImagesNum(images as any) === 1,
+      customClassName: className,
+    },
+  );
 
   const imageItemClick: IimageClickProps = (album, index) => {
     (imageClick as ImageFn)(album, index);

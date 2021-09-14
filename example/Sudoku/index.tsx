@@ -11,7 +11,9 @@ const fillImage = (number) => {
 
 export default () => (
     <div>
-        <Sudoku className='bang' images={1} waterMark={waterMark}/>
+        <Sudoku ratio={1.5} images={1} waterMark={waterMark}/>
+        <Sudoku ratio={1} images={1} waterMark={waterMark}/>
+        <Sudoku ratio={0.75} images={1} waterMark={waterMark} />
         <Sudoku images={'2'} waterMark={waterMark}/>
         <Sudoku images={fillImage(3)}  imageClick={(iamges,index) => console.log(iamges,index)}  waterMark={waterMark} />
         <Sudoku images={4} waterMark={waterMark}/>
