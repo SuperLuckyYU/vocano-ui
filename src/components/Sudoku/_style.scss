@@ -61,6 +61,29 @@ $sudokuPrefixCls: 'vo-sudoku';
     padding-top: $sudoku-image-width-percentage;
     overflow: hidden;
     font-size: 16px;
+    .#{$sudokuPrefixCls}-image-item-more {
+      .#{$sudokuPrefixCls}-image-item-more-mask {
+        background-color: #000;
+        opacity: 0.3;
+      }
+      .#{$sudokuPrefixCls}-image-item-more-number {
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: 600;
+        font-size: 20px;
+      }
+      .#{$sudokuPrefixCls}-image-item-more-mask,
+      .#{$sudokuPrefixCls}-image-item-more-number {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
     .#{$sudokuPrefixCls}-image {
       position: absolute;
       top: 0;
@@ -125,11 +148,11 @@ $sudokuPrefixCls: 'vo-sudoku';
 .#{$sudokuPrefixCls}-image {
   min-height: $skeleton-row-height;
   background: linear-gradient(
-    100deg,
-    rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0.5) 50%,
-    rgba(255, 255, 255, 0) 60%
-  )
+      100deg,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 60%
+    )
     $loading-grey;
   background-color: $loading-grey;
   background-position-x: 180%;
