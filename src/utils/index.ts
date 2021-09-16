@@ -182,3 +182,21 @@ export const pxToVw = (pxValue: number) => {
   const { clientWidth } = document.body;
   return round(pxValue / (clientWidth / 100), 5);
 };
+
+export const imageSizeComputed = (imageSrc: string) => {
+  const newImage = new Image();
+  newImage.src = imageSrc;
+  const { width, height } = newImage;
+  let computedWidth = '100%';
+  let computedHeight = '100%';
+  if (width > height) {
+    computedWidth = 'auto';
+  }
+  if (width < height) {
+    computedHeight = 'auto';
+  }
+  return {
+    width: computedWidth,
+    height: computedHeight,
+  };
+};

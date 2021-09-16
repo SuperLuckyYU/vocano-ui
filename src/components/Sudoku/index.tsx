@@ -1,5 +1,5 @@
 import React, { FC, CSSProperties } from 'react';
-import { classNames, uid, getNumber } from '../../utils';
+import { classNames, uid, getNumber, imageSizeComputed } from '../../utils';
 
 type ImageFn = (images: string[], index: number) => void;
 export interface SudokuProps {
@@ -77,8 +77,16 @@ const Sudoku: FC<SudokuProps> = props => {
         </div>
       );
     }
-    return <img className={classNames(componentName, 'image-item')} alt={item} src={item} />;
+    return (
+      <img
+        className={classNames(componentName, 'image-item')}
+        style={imageSizeComputed(item)}
+        alt={item}
+        src={item}
+      />
+    );
   };
+
   const renderImages = () => {
     if (!images) return null;
     const imagesFormat = Array.isArray(images)
