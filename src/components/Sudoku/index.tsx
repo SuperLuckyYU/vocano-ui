@@ -54,12 +54,12 @@ const Sudoku: FC<SudokuProps> = props => {
 
   const classes = classNames(
     componentName,
-    `images-wrapper-${getImagesNum(images as any)}`,
+    `images-wrapper-${getImagesNum(images as string[])}`,
     `images-wrapper-${showRatio(ratio as number)}`,
     {
       'images-wrapper': true,
-      'images-four': getImagesNum(images as any) === 4,
-      'image-one': getImagesNum(images as any) === 1,
+      'images-four': getImagesNum(images as string[]) === 4,
+      'image-one': getImagesNum(images as string[]) === 1,
       customClassName: className,
     },
   );
@@ -68,9 +68,9 @@ const Sudoku: FC<SudokuProps> = props => {
     (imageClick as ImageFn)(album, index);
   };
 
-  const imageLoadErr = (e: any) => {
-    e.target.onerror = null;
-    e.target.src = errImage;
+  const imageLoadErr = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    (e.target as HTMLImageElement).onerror = null;
+    (e.target as HTMLImageElement).src = errImage || '';
   };
 
   const imageDisplay = (imagesAll: string[], item: any, index: number) => {
