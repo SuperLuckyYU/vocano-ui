@@ -183,7 +183,7 @@ export const pxToVw = (pxValue: number) => {
   return round(pxValue / (clientWidth / 100), 5);
 };
 
-export const imageSizeComputed = (imageSrc: string) => {
+export const imgLoad = (e: any, imageSrc: any) => {
   const newImage = new Image();
   newImage.src = imageSrc;
   const { width, height } = newImage;
@@ -195,8 +195,7 @@ export const imageSizeComputed = (imageSrc: string) => {
   if (width < height) {
     computedHeight = 'auto';
   }
-  return {
-    width: computedWidth,
-    height: computedHeight,
-  };
+  e.target.style.width = computedWidth;
+  e.target.style.height = computedHeight;
+  e.target.style.opacity = 1;
 };

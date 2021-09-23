@@ -1,5 +1,5 @@
 import React, { FC, CSSProperties } from 'react';
-import { classNames, uid, getNumber, imageSizeComputed } from '../../utils';
+import { classNames, uid, getNumber, imgLoad } from '../../utils';
 
 type ImageFn = (images: string[], index: number) => void;
 export interface SudokuProps {
@@ -15,6 +15,8 @@ export interface SudokuProps {
   showAll?: boolean;
   /** 单图时的显示方向 */
   ratio?: number;
+  /** 图片加载失败的占位图 */
+  errImage?: string;
   /** 图片的点击事件 */
   imageClick?: ImageFn;
 }
@@ -38,7 +40,8 @@ const showRatio = (ratio: number) => {
  * ~~~
  */
 const Sudoku: FC<SudokuProps> = props => {
-  const { className, images, waterMark, showAll, ratio, imageClick, ...restProps } = props;
+  const { className, images, waterMark, showAll, ratio, imageClick, errImage, ...restProps } =
+    props;
   const getImagesNum = (imagesValue: number | string | string[]) => {
     if (Array.isArray(imagesValue)) {
       return imagesValue.length;
@@ -65,6 +68,11 @@ const Sudoku: FC<SudokuProps> = props => {
     (imageClick as ImageFn)(album, index);
   };
 
+  const imageLoadErr = (e: any) => {
+    e.target.onerror = null;
+    e.target.src = errImage;
+  };
+
   const imageDisplay = (imagesAll: string[], item: any, index: number) => {
     if (imagesAll.length > 9 && index === 8 && !showAll) {
       return (
@@ -73,14 +81,29 @@ const Sudoku: FC<SudokuProps> = props => {
           <div className={classNames(componentName, 'image-item-more-number')}>
             +{imagesAll.length - 9}
           </div>
-          <img className={classNames(componentName, 'image-item')} alt={item} src={item} />
+          <img
+            className={classNames(componentName, 'image-item')}
+            alt={item}
+            src={item}
+            onError={e => {
+              imageLoadErr(e);
+            }}
+            onLoad={e => {
+              imgLoad(e, item);
+            }}
+          />
         </div>
       );
     }
     return (
       <img
         className={classNames(componentName, 'image-item')}
-        style={imageSizeComputed(item)}
+        onError={e => {
+          imageLoadErr(e);
+        }}
+        onLoad={e => {
+          imgLoad(e, item);
+        }}
         alt={item}
         src={item}
       />
@@ -130,6 +153,7 @@ Sudoku.defaultProps = {
   waterMark: '',
   showAll: false,
   imageClick: () => {},
+  errImage: 'https://si1.go2yd.com/get-image/0u1NvMxgZkf',
 };
 
 export default Sudoku;
