@@ -183,7 +183,7 @@ export const pxToVw = (pxValue: number) => {
   return round(pxValue / (clientWidth / 100), 5);
 };
 
-export const imgLoad = (e: any, imageSrc: any) => {
+export const imgLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>, imageSrc: string) => {
   const newImage = new Image();
   newImage.src = imageSrc;
   const { width, height } = newImage;
@@ -195,7 +195,7 @@ export const imgLoad = (e: any, imageSrc: any) => {
   if (width < height) {
     computedHeight = 'auto';
   }
-  e.target.style.width = computedWidth;
-  e.target.style.height = computedHeight;
-  e.target.style.opacity = 1;
+  (e.target as HTMLImageElement).style.width = computedWidth;
+  (e.target as HTMLImageElement).style.height = computedHeight;
+  (e.target as HTMLImageElement).style.opacity = '1';
 };
