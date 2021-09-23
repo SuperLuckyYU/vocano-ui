@@ -83,14 +83,11 @@ class ImagePreview {
 
   private isDocBrowser = document.querySelector('.__dumi-default-mobile-demo-layout');
 
-  constructor(
-    images: string[] | ImagePreviewOptions,
-    startPosition: string | number = 0,
-  ) {
+  constructor(images: string[] | ImagePreviewOptions, startPosition: string | number = 0) {
     this.options = Array.isArray(images) ? { images, startPosition } : images;
-  };
+  }
 
-  show () {
+  show() {
     // bad case: compatible doc mobile layout
     if (!this.isDocBrowser) {
       document.body.appendChild(wrapperEl);
@@ -100,14 +97,14 @@ class ImagePreview {
 
     document.body.setAttribute('style', 'position: fixed');
     ReactDOM.render(<ImagePreviewWrapper {...this.options} onClose={this.close} />, wrapperEl);
-  };
+  }
 
-  close () {
+  close() {
     ReactDOM.unmountComponentAtNode(wrapperEl);
     const maskEl = document.getElementById('vo-mask');
-    if(maskEl) document.body.removeChild(maskEl);
+    if (maskEl) document.body.removeChild(maskEl);
     document.body.removeAttribute('style');
-  };
+  }
 }
 
 export default ImagePreview;
