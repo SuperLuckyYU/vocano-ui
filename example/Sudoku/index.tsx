@@ -4,7 +4,7 @@ import { Sudoku } from 'vocano-ui';
 
 // const pic = 'https://i1.go2yd.com/image.php?url=0XBLlpdAsV';
 const pic = [
-    'http://i1.go2yd.com/image.php?url=0XUiaYFeeN&type=jpeg_600x400', 
+    'http://i1.go2yd.com/image.php?url=0XUiaYFeN&type=jpeg_600x400', 
     'http://i1.go2yd.com/image.php?url=0XUiaYFeeN&type=jpeg_400x600',
    ]
 const waterMark = 'https://si1.go2yd.com/get-image/0tPBfE2Pei5';
@@ -16,8 +16,8 @@ const fillImage = (number, direction?: any) => {
 
 export default () => (
     <div>
-        <Sudoku ratio={1.5} images={[pic[0]]} waterMark={waterMark}/>
-        <Sudoku ratio={1} images={[pic[1]]} waterMark={waterMark}/>
+        <Sudoku errImage='http://si1.go2yd.com/get-image/0ppkJ3xv2bh' ratio={1.5} images={[pic[0]]} waterMark={waterMark}/>
+        <Sudoku errImage='http://si1.go2yd.com/get-image/0ppkJ3xv2bh' ratio={1} images={[pic[1]]} waterMark={waterMark}/>
         <Sudoku ratio={0.75} images={[pic[1]]} waterMark={waterMark} />
         <Sudoku images='2' waterMark={waterMark}/>
         <Sudoku images={fillImage(3)}  imageClick={(iamges,index) => console.log(iamges,index)}  waterMark={waterMark} />

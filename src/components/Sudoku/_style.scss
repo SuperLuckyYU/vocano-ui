@@ -118,6 +118,9 @@ $sudokuPrefixCls: 'vo-sudoku';
     .#{$sudokuPrefixCls}-image-item {
       width: 100%;
       height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: 0.4s;
     }
     .#{$sudokuPrefixCls}-image-watermark {
       width: 60%;
