@@ -76,6 +76,20 @@ const ImagePreviewWrapper: FC<InternalProps> = props => {
   );
 };
 
+function fixedBody(){
+  const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+  document.body.style.cssText += `width: 100%;position:fixed;top:-${scrollTop}px;`;
+}
+
+function looseBody() {
+  const {body} = document;
+  body.style.position = '';
+  const {top} = body.style;
+  document.documentElement.scrollTop = -parseInt(top, 10);
+  document.body.scrollTop = document.documentElement.scrollTop;
+  body.style.top = '';
+}
+
 class ImagePreview {
   private options: InternalProps = {
     images: [],
@@ -94,8 +108,7 @@ class ImagePreview {
     } else {
       this.isDocBrowser.appendChild(wrapperEl);
     }
-
-    document.body.setAttribute('style', 'position: fixed');
+    fixedBody()
     ReactDOM.render(<ImagePreviewWrapper {...this.options} onClose={this.close} />, wrapperEl);
   }
 
@@ -103,7 +116,7 @@ class ImagePreview {
     ReactDOM.unmountComponentAtNode(wrapperEl);
     const maskEl = document.getElementById('vo-mask');
     if (maskEl) document.body.removeChild(maskEl);
-    document.body.removeAttribute('style');
+    looseBody()
   }
 }
 
