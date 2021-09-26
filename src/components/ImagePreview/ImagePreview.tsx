@@ -82,12 +82,11 @@ function fixedBody() {
 }
 
 function looseBody() {
-  const { body } = document;
-  body.style.position = '';
-  const { top } = body.style;
+  document.body.style.position = '';
+  const { top } = document.body.style;
   document.documentElement.scrollTop = -parseInt(top, 10);
-  document.body.scrollTop = document.documentElement.scrollTop;
-  body.style.top = '';
+  document.body.scrollTop = -parseInt(top, 10);
+  document.body.style.top = '';
 }
 
 class ImagePreview {
@@ -113,10 +112,10 @@ class ImagePreview {
   }
 
   close() {
+    looseBody();
     ReactDOM.unmountComponentAtNode(wrapperEl);
     const maskEl = document.getElementById('vo-mask');
     if (maskEl) document.body.removeChild(maskEl);
-    looseBody();
   }
 }
 
