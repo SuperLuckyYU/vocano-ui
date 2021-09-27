@@ -112,6 +112,9 @@ $sudokuPrefixCls: 'vo-sudoku';
       height: 100%;
       overflow: hidden;
     }
+    &.#{$sudokuPrefixCls}-image-border-radius {
+      border-bottom-right-radius: $sudoku-border-radius;
+    }
     &:nth-child(3n) {
       margin-right: 0% !important;
     }
