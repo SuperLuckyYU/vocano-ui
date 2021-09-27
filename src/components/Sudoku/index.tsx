@@ -110,6 +110,13 @@ const Sudoku: FC<SudokuProps> = props => {
     );
   };
 
+  const bottomRightCornerBorderRedius = (imageArr: string[], index: number) => {
+    if ((index + 1) % 3 === 0 && imageArr.length - (index + 1) < 3) {
+      return 'image-border-radius';
+    }
+    return '';
+  };
+
   const renderImages = () => {
     if (!images) return null;
     const imagesFormat = Array.isArray(images)
@@ -120,7 +127,11 @@ const Sudoku: FC<SudokuProps> = props => {
     const imageList = imagesShowArr.map((item: string, index: number) => (
       <div
         key={uid()}
-        className={classNames(componentName, 'image-outer')}
+        className={classNames(
+          componentName,
+          'image-outer',
+          bottomRightCornerBorderRedius(imagesShowArr, index),
+        )}
         onClick={() => {
           imageItemClick(imagesShowArr, index);
         }}
