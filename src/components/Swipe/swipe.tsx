@@ -239,7 +239,7 @@ const Swipe: FC<SwipeProps> = props => {
     setSwiping(false);
     preventDefault(event, stopPropagation);
     // Determined as a click event
-    if (delta === 0 && handleClickCallback && isFunction(handleClickCallback)) {
+    if (delta === 0 && _duration < 1000 && handleClickCallback && isFunction(handleClickCallback)) {
       handleClickCallback();
     }
   };
