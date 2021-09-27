@@ -20,6 +20,8 @@ export interface VideoWrapperProps {
   poster?: string;
   /** 视频或者doc地址 */
   url?: string;
+  /** 封面填充方式 */
+  fill?: string;
   /** 视频的点击事件 */
   videoClick?: VideoClickFn;
 }
@@ -27,7 +29,7 @@ export interface VideoWrapperProps {
 const componentName = 'video-wrapper';
 
 const VideoWrapper: FC<VideoWrapperProps> = props => {
-  const { className, width, height, time, poster, url, videoClick, ...restProps } = props;
+  const { className, width, height, time, poster, url, fill, videoClick, ...restProps } = props;
   const getDirection: GetDirection = (picWidth, picHeight) => {
     const widthFormat = typeof picWidth === 'string' ? getNumber(picWidth) : width;
     const heightFormat = typeof picHeight === 'string' ? getNumber(picHeight) : width;
@@ -61,6 +63,7 @@ const VideoWrapper: FC<VideoWrapperProps> = props => {
 
   const style = {
     backgroundImage: `url(${poster})`,
+    backgroundSize: fill,
   };
 
   return (
@@ -77,7 +80,9 @@ const VideoWrapper: FC<VideoWrapperProps> = props => {
         alt="play button"
         src="https://si1.go2yd.com/get-image/0tSYIf996Zt"
       />
-      <span className={classNames(componentName, 'time')}>{formatTime(time as string)}</span>
+      <span className={classNames(componentName, 'time')}>
+        {time && formatTime(time as string)}
+      </span>
     </div>
   );
 };
@@ -86,8 +91,9 @@ VideoWrapper.defaultProps = {
   width: 360,
   height: 360,
   poster: '',
-  time: '00:00',
+  time: '',
   url: '',
+  fill: 'contain',
   videoClick: () => {},
 };
 
