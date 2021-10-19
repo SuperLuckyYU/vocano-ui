@@ -30,3 +30,4 @@ import { ImagePreview } from 'vocano-ui';
 | startPosition | 图片预览起始位置索引 | `number` 、 `string` | `0` |
 | swipeDuration | 动画时长，单位为ms | `number` 、 `string` | `300` |
 | showIndex | 是否显示页码 | `boolean` | `true` |
+| onChange | 切换图片时的回调函数，回调参数为当前索引 | `Function` | `-` |

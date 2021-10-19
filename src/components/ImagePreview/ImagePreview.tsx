@@ -14,6 +14,8 @@ interface ImagePreviewOptions {
   swipeDuration?: number | string;
   /** 是否显示页码 */
   showIndex?: boolean;
+  /** 切换图片时的回调函数，回调参数为当前索引 */
+  onChange?: (index: number) => void;
 }
 
 interface InternalProps extends ImagePreviewOptions {
@@ -37,13 +39,19 @@ const ImagePreviewWrapper: FC<InternalProps> = props => {
     showIndex = true,
     swipeDuration = '300',
     onClose = () => {},
+    onChange = () => {},
   } = props;
 
   const [currentIndex, setCurrentIndex] = useState(1);
 
-  const handleChange = useCallback((index: number) => {
-    setCurrentIndex(index + 1);
-  }, []);
+  const handleChange = useCallback(
+    (index: number) => {
+      const num = index + 1;
+      setCurrentIndex(num);
+      onChange(num);
+    },
+    [onChange],
+  );
 
   return (
     <Popup
